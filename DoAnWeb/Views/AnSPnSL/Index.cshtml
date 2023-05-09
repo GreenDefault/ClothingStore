@@ -1,0 +1,480 @@
+﻿@model DoAnWeb.ViewModels.AnSPnSL
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <link href="~/Assets/fontawesome-free-5.15.2-web/css/all.min.css" />
+    <link href="~/Assets/fontawesome-free-5.15.2-web/js/all.js" />
+    <script>
+        $(document).ready(function () {
+            $('button#loccc').click(function () {
+                $.ajax({
+                    url: "@Url.Action("realfilter")",
+                    type: 'POST',
+                    data: {
+                        'th': $('input[type=hidden]#thValue').val(),
+                        'cl': $('input[type=hidden]#clValue').val(),
+                        'lsp': $('input[type=hidden]#lspValue').val(),
+                        'gt': $('input[type=hidden]#gtValue').val()
+                    },
+                    success: function (result) {
+                        $('div#db').html(result);
+                    }
+                })
+            });
+        })
+        function clickth(abc) {
+            if (abc.checked == true) {
+                var checkboxes = document.querySelectorAll('input[type="checkbox"].checkboxth');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                abc.checked = true;
+                $('input[type=hidden]#thValue').val($(abc).val());
+            }
+            else {
+                $('input[type=hidden]#thValue').val(0);
+            }
+        }
+        function clickcl(abc) {
+            if (abc.checked == true) {
+                var checkboxes = document.querySelectorAll('input[type="checkbox"].checkboxcl');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                abc.checked = true;
+                $('input[type=hidden]#clValue').val($(abc).val());
+            }
+            else {
+                $('input[type=hidden]#clValue').val(0);
+            }
+
+        }
+        function clicklsp(abc) {
+            if (abc.checked == true) {
+                var checkboxes = document.querySelectorAll('input[type="checkbox"].checkboxlsp');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                abc.checked = true;
+                $('input[type=hidden]#lspValue').val($(abc).val());
+            }
+            else {
+                $('input[type=hidden]#lspValue').val(0);
+            }
+
+        }
+
+        function clickgt(abc) {
+            if (abc.checked == true) {
+                var checkboxes = document.querySelectorAll('input[type="checkbox"].checkboxgt');
+                for (var i = 0; i < checkboxes.length; i++) {
+                    checkboxes[i].checked = false;
+                }
+                abc.checked = true;
+                $('input[type=hidden]#gtValue').val($(abc).val());
+            }
+            else {
+                $('input[type=hidden]#gtValue').val(0);
+            }
+
+        }
+
+        function clicksapxep(a) {
+            $.ajax({
+                url: "@Url.Action("realfilternew")",
+                type: 'POST',
+                data: {
+                    'th': $('input[type=hidden]#thValue').val(),
+                    'cl': $('input[type=hidden]#clValue').val(),
+                    'lsp': $('input[type=hidden]#lspValue').val(),
+                    'gt': $('input[type=hidden]#gtValue').val(),
+                    'bro': a
+                },
+                success: function (result) {
+                    $('div#db').html(result);
+                }
+            })
+        }
+
+        function gia(happyeverafter) {
+            $.ajax({
+                url: "@Url.Action("moneh")",
+                type: 'POST',
+                data: {
+                    'th': $('input[type=hidden]#thValue').val(),
+                    'cl': $('input[type=hidden]#clValue').val(),
+                    'lsp': $('input[type=hidden]#lspValue').val(),
+                    'gt': $('input[type=hidden]#gtValue').val(),
+                    'paradise': happyeverafter
+                },
+                success: function (result) {
+                    $('div#db').html(result);
+                }
+            })
+        }
+
+    </script>
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: rgb(249, 249, 249);
+        }
+
+        /* Header */
+
+        .list_item {
+            text-align: center;
+        }
+
+        .item_product {
+            display: inline-flex;
+            background: rgb(255, 255, 255);
+            min-width: 100px;
+            margin-bottom: 20px;
+            margin-left: 40px;
+        }
+
+        a#item_product {
+            text-align: center;
+            width: 152px;
+            padding: 15px 0px;
+            margin: 0px 1px;
+            border: 1px solid white;
+            margin-left: 5px;
+        }
+
+            a#item_product:hover {
+                border: 1px solid rgb(233, 233, 255);
+            }
+
+        #img_item {
+            text-align: center;
+            padding-bottom: 10px;
+            width: 75px;
+            height: 55px;
+        }
+
+        #item_text {
+            color: rgb(0, 38, 255);
+        }
+
+        .row {
+            margin-bottom: 40px;
+            margin-right:0px;
+        }
+
+        .main_cart_product {
+            background: linear-gradient(to right,rgb(235, 155, 255),rgb(225, 106, 255), rgb(255, 0, 221),rgb(255, 0, 221),rgb(225, 106, 255), rgb(219, 176, 245));
+            height: 55px;
+            text-align: center;
+        }
+
+        .img_cart_product {
+            padding: 13px 65px;
+            font-size: 22px;
+        }
+
+
+        .main_product {
+            height: auto;
+            display: flex;
+            background-color: white;
+            padding-top: 80px;
+        }
+
+        .filter {
+            background: white;
+            margin-left: 52px;
+            flex: 1;
+            max-width: 220px;
+        }
+
+        .iddd {
+            background: white;
+            flex: 8;
+            margin-right: 0px;
+        }
+
+        .filter_all {
+            margin: 40px 25px 15px 0px;
+        }
+
+        #iddd {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .item_product {
+            display: inline-flex;
+            background: rgb(255, 255, 255);
+            min-width: 100px;
+            margin-bottom: 20px;
+        }
+
+        a#item_product {
+            text-align: center;
+            width: 152px;
+            padding: 15px 0px;
+            margin: 0px 1px;
+            border: 1px solid rgb(233, 233, 255);
+            margin: 0px;
+        }
+
+            a#item_product:hover {
+                border: 1px solid rgb(233, 233, 255);
+            }
+
+        #img_item {
+            width: 70px;
+            height: 60px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        #item_text {
+            color: rgb(0, 38, 255);
+        }
+
+        .card_full {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .card {
+            width: 180px;
+            height: 346px;
+            color: rgb(140, 0, 255);
+            margin: 15px 12px 35px 0px;
+            border: 1px solid rgb(240, 240, 255);
+            text-align: center;
+            position: static;
+        }
+
+            .card:hover {
+                border: 1px solid blue;
+            }
+
+        .card-img-top {
+            width: 100%;
+            height: 250px;
+        }
+
+        .row.row_product {
+            margin: 20px 0px 20px 50px;
+        }
+
+        .fas fa-arrow-down {
+            width: auto;
+            height: 37px;
+            padding: 10px;
+        }
+
+        .filter_left {
+            width: 215px;
+            margin: 35px 0px -8px 25px;
+            border-bottom: 1px solid blue;
+            padding-bottom: 15px;
+        }
+
+        .card-title {
+            margin-bottom: .75rem;
+            font-size: 18px;
+        }
+
+        div#loaisp {
+            margin-bottom: 30px;
+            font-size: 17px;
+        }
+
+        #checkboxsp {
+            color: black;
+            margin: 10px -17px;
+        }
+
+            #checkboxsp:hover {
+                color: darkviolet;
+            }
+
+        .main_home {
+            height: auto;
+            width: 100%;
+            display: flex;
+            margin-bottom: 50px;
+        }
+
+        #img_left {
+            width: 530px;
+            height: 300px;
+            flex: 1;
+            border: 1px solid rgb(255, 207, 248);
+        }
+
+        #img_right {
+            width: 530px;
+            height: 300px;
+            margin-left: 20px;
+            flex: 1;
+            border: 1px solid rgb(255, 207, 248);
+        }
+
+        .page-link {
+            position: relative;
+            display: block;
+            padding: 9px 15px;
+            margin-left: 4px;
+            line-height: 1.25;
+            color: #007bff;
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 40px;
+            height: 40px;
+        }
+
+        .card-title {
+            white-space: nowrap;
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .page-item:first-child .page-link, .page-item:last-child .page-link {
+            margin-left: 5px;
+            border-radius: 30px;
+            padding-right: 6px;
+            width: 40px;
+        }
+
+        button#loccc {
+            margin: 50px 0px 170px 25px;
+            height: 40px;
+            width: 214px;
+            border: 1px solid blue;
+            background: blue;
+            color: white;
+        }
+
+        .sapxep {
+            margin: 30px 30px 0px 50px;
+        }
+
+        span{
+            font-size:17px;
+        }
+
+
+        .sapxep_sp {
+            width: 110px;
+            height: 34px;
+            border: 1px solid gray;
+            background: white;
+            margin-left: 3px;
+        }
+
+        .lq{
+            margin-left:25px;
+        }
+
+        .sl {
+            position: relative;
+            display: inline-block;
+        }
+        .money {
+            width: 130px;
+            border: none;
+            text-align: left;
+            height: 32px;
+            margin-left: 13px;
+        }
+
+        .option {
+            position: absolute;
+            display: none;
+            height: 100px;
+            width: 170px;
+            padding: 15px 20px;
+            background-color: #f6f6f6;
+        }
+        .sl:hover .option{
+            display:block;
+        }
+
+        .locgia {
+            padding: 7px 0px;
+            font-size: 16px;
+        }
+
+    </style>
+</head>
+<body>
+    <!--Product-->
+
+    <div class="main_product">
+
+        <div class="filter">
+
+            <div class="filter_left">
+
+                <div id="loaisp">Loại sản phẩm</div>
+                @foreach (var item in Model.Loais)
+                {
+                    <div style="margin:15px 0px;"><input style="margin-right:15px;" type="checkbox" value="@item.MaLoaiSP" name="cac" id="th*@item.MaLoaiSP" class="checkboxlsp" onclick="clicklsp(this)" />@item.TenLoaiSP<br /></div>
+                }
+                <input id="lspValue" type="hidden" value="0" />
+            </div>
+
+            <div class="filter_left">
+                <div id="loaisp">Thương hiệu</div>
+                @foreach (var item in Model.ThuongHieus)
+                {
+                    <div style="margin:15px 0px;"><input style="margin-right:15px;" type="checkbox" value="@item.MaTH" name="cac" id="th*@item.MaTH" class="checkboxth" onclick="clickth(this)" />@item.TenTH<br /></div>
+                }
+                <input id="thValue" type="hidden" value="0" />
+            </div>
+
+            <div class="filter_left">
+                <div id="loaisp">Chất liệu</div>
+                @foreach (var item in Model.chatLieus)
+                {
+                    <div style="margin:15px 0px;"><input style="margin-right:15px;" type="checkbox" value="@item.MaCL" name="cac" id="th*@item.MaCL" class="checkboxcl" onclick="clickcl(this)" />@item.TenChatLieu<br /></div>
+                }
+                <input id="clValue" type="hidden" value="0" />
+            </div>
+
+            <div class="filter_left">
+                <div id="loaisp">Giới Tính</div>
+                @foreach (var item in ViewBag.GT)
+                {
+                    <div style="margin:15px 0px;"><input style="margin-right:15px;" type="checkbox" value="@item.MaGT" name="cac" id="th*@item.MaGT" class="checkboxgt" onclick="clickgt(this)" />@item.GioiTinh1<br /></div>
+                }
+                <input id="gtValue" type="hidden" value="0" />
+            </div>
+            <button id="loccc">Lọc sản phẩm</button>
+        </div>
+        <div>
+            <div class="sapxep" style="display:flex;">
+                <div>
+                    <span>Sắp xếp theo:</span>
+                    <button class="sapxep_sp lq" onclick="clicksapxep(1)">Mới nhất</button>
+                    <button class="sapxep_sp" onclick="clicksapxep(2)">Bán chạy</button>
+                </div>
+                <div class="sl" style="margin-left: 8px;width: 170px;">
+                    <div style="border:1px solid black;"><button class="sapxep_sp money">Giá</button><i class="fas fa-angle-down"></i></div>
+                    <div class="option" style="background-color:snow;">
+                        <div class="locgia"><button style="margin-left: 0px; border:none; background-color:snow;" onclick="gia(1)">Từ cao đến thấp</button></div>
+                        <div class="locgia"><button style="margin-left: 0px; border:none; background-color:snow;" onclick="gia(2)">Từ thấp đến cao</button></div>
+                    </div>
+                </div>
+
+            </div>
+            <div id="db">
+                @Html.Partial("_SanPham", Model.ASPSLs)
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

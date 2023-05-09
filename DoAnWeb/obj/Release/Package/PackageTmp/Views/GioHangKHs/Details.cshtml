@@ -1,0 +1,165 @@
+﻿@model DoAnWeb.Areas.Admin.Models.GioHang
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SoLuong)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuong)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ThanhTien)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ThanhTien)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChatLieu.TenChatLieu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChatLieu.TenChatLieu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mau.TenMau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mau.TenMau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SanPham.TenSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SanPham.TenSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Size.TenSize)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Size.TenSize)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaiKhoan.TenDN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaiKhoan.TenDN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+
+
+
+
+
+
+
+
+
+<div class="container container-product">
+    <div class="row row_detail">
+        <div class="col-sm-6 left-detail">
+            <img class="img_detail" src="~/Assets/images/4.jpg">
+        </div>
+        <div class="col-sm-6 right-detail">
+
+            <div class="text_detail header_detail">Tên SP: @Model.Sanss.TenSP</div>
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td>Giá: </td>
+                        <td id="sprice">200,000 VNĐ</td>
+                    </tr>
+                    <tr>
+                        <td>Thương hiệu: @Model.Sanss.ThuongHieu.TenTH </td>
+                        <td class="th">Moe</td>
+                    </tr>
+                    <tr>
+                        <td>Chất liệu: </td>
+                        <td class="th">Phông</td>
+                    </tr>
+                    <tr>
+                        <td>Màu: </td>
+                        <td>
+                            List<long> dmca = new List<long>();
+                                foreach (var item in Model.Luongs)
+                                {
+                                if (!dmca.Contains(item.MaMau))
+                                {
+                                @item.Mau.TenMau
+                                dmca.Add(item.MaMau);
+                                }
+                                }
+                                <select id="occho" name="MaMau">
+                                    @{ List<long> k = new List<long>();}
+                                    @foreach (var item in Model.Luongs)
+                                    {
+                                        if (!k.Contains(item.MaMau))
+                                        {
+                                            <option value="@item.MaMau">@item.Mau.TenMau</option>
+                                            k.Add(item.MaMau);
+                                        }
+                                    }
+                                </select>
+</td>
+                    </tr>
+                    <tr>
+                        <td>Size: </td>
+                        <td><select class="form-control" id="oat" name="MaSize">
+                        <option></option>
+                        @{ var kkk = Model.Luongs[0].MaMau;}
+                        @foreach (var item in Model.Luongs)
+                        {
+                            if (item.MaMau == kkk)
+                            {
+                                <option value="@item.MaSize">@item.Size.TenSize</option>
+                            }
+                        }
+                    </select></td>
+                    </tr>
+                    <tr>
+                        <td>Số lượng: </td>
+                        <td><input class="" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Chia sẻ</td>
+                        <td>
+                            <i class="fab fab-i fa-facebook-square" style="color: rgb(0, 119, 255); width: 24px; height: 24px; margin-right: 15px;"></i>
+                            <i class="fab fab-i fa-twitter-square" style="color: rgb(6, 255, 255); width: 24px; height: 24px; margin-right: 15px;"></i>
+                            <i class="fab fab-i fa-instagram-square" style="color: rgb(240, 124, 255); width: 24px; height: 24px;"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text_detail text-add-to-cart">
+                <button class="btn btn-primary add-to-cart"><a id="detail_addtocart" href="./Shoppingcart.html"> Thêm vào giỏ hàng </a></button>
+            </div>
+
+        </div>
+    </div>
+
+</div>

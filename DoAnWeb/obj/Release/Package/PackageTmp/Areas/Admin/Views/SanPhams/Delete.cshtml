@@ -1,0 +1,99 @@
+﻿@model DoAnWeb.Areas.Admin.Models.SanPham
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3 style="margin:30px 0px;">Xóa sản phẩm</h3>
+<html>
+<head>
+    <style>
+        .body-wrapper .main-wrapper .page-wrapper {
+            background: #e9eaef;
+            margin-left: 170px;
+        }
+
+        table tr th {
+            padding: 20px 42px 20px 0px;
+        }
+
+        .btn btn-default {
+            width: 50px;
+            height: 24px;
+        }
+
+        input.btn.btn-default {
+            height: 35px;
+            width: 119px;
+            background: #405ffb;
+            border: none;
+            font-size: 15px;
+            color: white;
+            margin-top: 5px;
+        }
+
+        .name_product {
+            font-size:16px;
+            margin-top:10px;
+            white-space: nowrap;
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <hr />
+        <table class="dl-horizontal">
+            <tr>
+                <th>
+                    Tên sản phẩm
+                </th>
+                <th>Đơn giá</th>
+                <th>Chất liệu</th>
+                <th>Giới tính</th>
+                <th>Loại sản phẩm</th>
+                <th>Nhà cung cấp</th>
+                <th>
+                    Thương hiệu
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <p class="name_product">@Html.DisplayFor(model => model.TenSP)</p>
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.DonGia)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ChatLieu.TenChatLieu)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.GioiTinh.GioiTinh1)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.LoaiSP.TenLoaiSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.NCC.TenNCC)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.ThuongHieu.TenTH)
+                </td>
+            </tr>
+        </table>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color" style="margin-top:40px;">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Trở về", "Index")
+            </div>
+        }
+    </div>
+</body>
+</html>
+

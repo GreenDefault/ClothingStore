@@ -1,0 +1,100 @@
+﻿@model DoAnWeb.Areas.Admin.Models.TaiKhoan
+
+<script>
+    $(document).ready(function () {
+        $('button[type=submit]#btnTNKH').click(function () {
+            $.ajax({
+                    url: "@Url.Action("DoiThongTin")",
+                    type: 'POST',
+                data: {
+                    'TenKH': $('input[type=text]#TenND').val(),
+                    'DiaChi': $('input[type=text]#diachi').val(),
+                    'Email': $('input[type=text]#email').val(),
+                    'sdt': $('input[type=tel]#sdt').val()
+                    },
+                success: function (result) {
+                    $('div#unconfimredd').html(result);
+                    }
+                })
+        })
+    })
+</script>
+<div class="tabcontent info" id="Info">
+    <div class="bbbb">
+        Cập nhật thông tin cá nhân
+    </div>
+    <div style="display:flex;">
+        <div style="flex:3;">
+            <span id="euro">@ViewBag.Tus</span>
+            <table>
+                <thead>
+                    <tr>
+                        <td>
+                            Tên đăng nhập
+                        </td>
+                        <td class="td">
+                            @Model.TenDN
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Tên
+                        </td>
+                        <td class="td">
+                            <input type="text" value="@Model.TenNguoiDung" id="TenND" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email
+                        </td>
+                        <td class="td">
+                            <input type="text" value="@Model.Email" id="email" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Số điện thoại
+                        </td>
+                        <td class="td">
+                            <input type="tel" value="@Model.SDT" id="sdt" />
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            Địa chỉ
+                        </td>
+                        <td class="td">
+                            <input type="text" value="@Model.DiaChi" id="diachi" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td class="td">
+                            <button class="btn btn-primary" type="submit" style="width:120px;" id="btnTNKH">Lưu</button>
+                        </td>
+                    </tr>
+
+                </thead>
+            </table>
+        </div>
+        
+        <div class="edit_img" >
+            <img id="img" src="@Url.Content("~/Assets/images/" + Model.Anh)" />
+            <div class="edit">
+                <input style="display:none;" id="picture" type="file" accept=".png,.jpg,jpeg" />
+                <button class="click" id="btn_img" onclick="up()">Chọn ảnh</button>
+            </div>
+
+            <script>
+                function up() {
+                        document.getElementById('btn_img').value
+                        document.getElementById('picture') = picture;
+                        }
+            </script>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,67 @@
+﻿@model DoAnWeb.ViewModels.SPnSL
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container container-product">
+    <div class="cart__icon">
+        @foreach (var item in Model.spNsl)
+        {
+            <div class="card" style="width:250px">
+                @foreach(var thing in item.things)
+                {
+                <img class="card-img-top" src="@Url.Content("~/Assets/images/" + thing.AnhMau)" alt="Card image">
+                }
+                
+                <div class="card-body">
+                    <h4 class="card-title">@item.sanPham.TenSP</h4>
+                    <p>
+                        Size:
+                        @{
+                            List<string> checksize = new List<string>();
+                            List<string> checkMau = new List<string>();
+                        }
+                        @foreach (var c in item.things)
+                        {
+                            if (!checksize.Contains(c.Size))
+                            {
+                                @c.Size;
+                                checksize.Add(c.Size);
+                            }
+                        }
+                        
+                    </p>
+                    <p>
+                        Mau: 
+                        @foreach(var c in item.things)
+                        {
+                            if(!checkMau.Contains(c.AnhMau))
+                            {
+                                <img src="@Url.Content("~/Assets/images/" + c.AnhMau)" width="10" height="10" />
+                            }
+                        }
+
+                    </p>
+                        <p class="card-text">Giá: @item.sanPham.DonGia</p>
+                    </div>
+            </div>
+        }
+
+    </div>
+</div>
+<div class="row" style="margin-left:840px">
+    <nav aria-label="Page navigation" class="mx-auto">
+        <ul class="pagination" style="margin:20px 0">
+            @if (@ViewBag.NumPages != null && @ViewBag.NumPages > 1)
+            {
+                <li class="page-item"><a class="page-link" href="Index?page=1"><<</a></li>
+                for (int i = 1; i <= @ViewBag.NumPages; i++)
+                {
+                    <li class="page-item"><a class="page-link" href="Index?page=@i">@i</a></li>
+                }
+                <li class="page-item"><a class="page-link" href="Index?page=@ViewBag.NumPages">>></a></li>
+            }
+        </ul>
+    </nav>
+</div>

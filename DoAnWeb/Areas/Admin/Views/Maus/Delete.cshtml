@@ -1,0 +1,79 @@
+﻿@model DoAnWeb.Areas.Admin.Models.Mau
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h3 style="margin:30px 0px;">Chi tiết</h3>
+<html>
+<head>
+    <style>
+        .body-wrapper .main-wrapper .page-wrapper {
+            background: #e9eaef;
+            margin-left: 170px;
+        }
+
+        table tr th {
+            padding: 20px 0px;
+        }
+
+        .btn btn-default {
+            width: 50px;
+            height: 24px;
+        }
+
+        input.btn.btn-default {
+            height: 35px;
+            width: 119px;
+            background: #405ffb;
+            border: none;
+            font-size: 15px;
+            color: white;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <hr />
+        <table class="dl-horizontal">
+            <tr>
+                <th>
+                    Tên màu
+                </th>
+                <th>
+                    Ảnh
+                </th>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.TenMau)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.Anh)
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <p>
+            <div style="display:flex;padding:20px 0px;">
+                <div class="form-group" style="flex:1;">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Delete" class="btn btn-default" />
+                    </div>
+                </div>
+                <div style="flex:1;text-align:center;margin-top:30px;">
+                    @Html.ActionLink("Trở về", "Index")
+                </div>
+            </div>
+        </p>
+    }
+</body>
+</html>

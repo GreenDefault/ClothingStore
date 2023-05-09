@@ -1,0 +1,61 @@
+﻿@model DoAnWeb.ViewModels.ViewModel_TTnGH
+@{
+    ViewBag.Title = "CheckOut";
+}
+@{ long money = 0;}
+<h2>CheckOut</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Thành Tiền
+        </th>
+        <th>
+            Tên Sản Phẩm
+        </th>
+        <th>
+            <p>Số Lượng</p>
+        </th>
+    </tr>
+
+    @foreach (var item in Model.GHs)
+    {
+        <tr>
+            @if (item.SoLuong <= 0)
+            {
+                continue;
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.ThanhTien)
+                @{ money = money + long.Parse(item.ThanhTien.ToString());}
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.TenSP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SoLuong)
+            </td>
+            <td>
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+<p>
+    Tổng Tiền: @money
+</p>
+@using (Html.BeginForm("confirm", "GioHangKHs", FormMethod.Post))
+{
+    foreach (var item in Model.TTs)
+    {
+        <p><input type="radio" id="2" name="cba" value="@item.MaThe" /> @item.TenThe</p>
+    }
+    <input type="submit" name="buyall" id="buyall" value="Xác Nhận" />
+
+}
+

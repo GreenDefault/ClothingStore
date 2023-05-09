@@ -1,0 +1,51 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Header */
+
+.header {
+    height: 670px;
+    background: url(../Views/images/fashion1.jpg);
+    background-size: cover;
+    margin-bottom: 50px;
+    opacity: 0.8;
+}
+/* Main Img*/
+
+.main {
+    margin-bottom: 50px;
+}
+
+.main_home {
+    height: auto;
+    width: 100%;
+}
+
+.main_top {
+    display: flex;
+    margin: 70px 0px;
+}
+
+#main_left {
+    width: 50%;
+}
+
+#img_left {
+    width: 530px;
+    height: 300px;
+    border: 1px solid rgb(255, 207, 248);
+}
+
+#img_right {
+    width: 530px;
+    height: 300px;
+    margin-left: 20px;
+    border: 1px solid rgb(255, 207, 248);
+}
+
+span#Nd {
+    width: 300px;
+}

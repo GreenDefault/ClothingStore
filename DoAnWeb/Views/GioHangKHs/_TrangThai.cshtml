@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.TrangThai>
+
+    <div style="padding-top:28px;padding-bottom: 10px;">
+        <div><i class="fas fa-user"></i> Tài khoản của bạn</div>
+        <div> <button class="aa" onclick="loadtab(-1)">Thông tin khách hàng</button></div>
+        <div> <button class="aa" onclick="loadtab(-2)">Đổi mật khẩu</button></div>
+    </div>
+    <div class="infoo">
+
+        <div><i class="fas fa-clipboard-list" style="color:blue;"></i> Đơn hàng</div>
+        @foreach (var item in Model)
+        {
+            <div> <button class="aa" onclick="loadtab(@item.MaTrangThai, this)">@item.TenTrangThai</button></div>
+        }
+    </div>
+<script>
+    function loadtab(id, abc) {
+        $.ajax({
+                    url: "@Url.Action("filter")",
+                    type: 'POST',
+                    data: {
+                        'id': id
+                    },
+                    success: function (result) {
+                        $('div#unconfimredd').html(result);
+                        if (id > 0) {
+                            var div = '<div class="bbbb">' + $(abc).text() + '</div >';
+                        }
+                        $('div#unconfimredd').prepend(div);
+                    }
+                })
+        }
+    </script>

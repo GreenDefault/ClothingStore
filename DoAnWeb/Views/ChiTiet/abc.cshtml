@@ -1,0 +1,141 @@
+﻿<html>
+<head>
+    <title>Chi tiết sản phẩm</title>
+    <style>
+        .main{
+            margin-bottom: 50px;
+        }
+
+        .container.container-product {
+            padding-top: 110px;
+        }
+
+        a#detail_addtocart {
+            padding: 0px;
+            margin: 0px 0px;
+        }
+
+        .row_detail{
+            padding-top: 5px;
+            padding-bottom: 10px;
+            display: flex;
+        }
+
+        .col-sm-6.left-detail {
+            text-align: left;
+            padding-left: 100px;
+        }
+
+        .col-sm-6.right-detail {
+            text-align: left;
+            padding-left: 50px;
+        }
+
+        .img_detail{
+            width: 380px;
+            height: 490px;
+            border: 1px solid blue;
+        }
+
+        td{
+            text-align: left;
+            font-size: 17px;
+            color: rgb(0, 0, 0);
+        }
+
+        #sprice{
+            color: rgb(255, 0, 128);
+        }
+
+        .th{
+            color: rgb(0, 4, 255);
+        }
+
+        .text_detail.header_detail {
+            font-size: 30px;
+            margin: 0px 0px 35px 10px;
+            color: blue;
+        }
+
+        .text-add-to-cart{
+            padding: 0px;
+            margin: 38px 10px;
+        }
+
+        .add-to-cart{
+            width: 200px;
+            font-size: 17px;
+            margin-top: 0px;
+        }
+
+
+        .left_detail_share{
+            margin-left: 60px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!--Detail-->
+
+    <div class="container main">
+
+        <div class="detail">
+
+        </div>
+
+       
+
+    <script>
+        $(document).ready(function () {
+            $("#add").click(function () {
+                var lastField = $("#buildyourform div:last");
+                var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+                var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\"/>");
+                fieldWrapper.data("idx", intId);
+                var fName = $("<input type=\"text\" class=\"fieldname\" />");
+                var fType = $("<select class=\"fieldtype\"><option value=\"checkbox\">Checked</option><option value=\"textbox\">Text</option><option value=\"textarea\">Paragraph</option></select>");
+                var removeButton = $("<input type=\"button\" class=\"remove\" value=\"-\" />");
+                removeButton.click(function () {
+                    $(this).parent().remove();
+                });
+                fieldWrapper.append(fName);
+                fieldWrapper.append(fType);
+                fieldWrapper.append(removeButton);
+                $("#buildyourform").append(fieldWrapper);
+            });
+            $("#preview").click(function () {
+                $("#yourform").remove();
+                var fieldSet = $("<fieldset id=\"yourform\"><legend>Your Form</legend></fieldset>");
+                $("#buildyourform div").each(function () {
+                    var id = "input" + $(this).attr("id").replace("field", "");
+                    var label = $("<label for=\"" + id + "\">" + $(this).find("input.fieldname").first().val() + "</label>");
+                    var input;
+                    switch ($(this).find("select.fieldtype").first().val()) {
+                        case "checkbox":
+                            input = $("<input type=\"checkbox\" id=\"" + id + "\" name=\"" + id + "\" />");
+                            break;
+                        case "textbox":
+                            input = $("<input type=\"text\" id=\"" + id + "\" name=\"" + id + "\" />");
+                            break;
+                        case "textarea":
+                            input = $("<textarea id=\"" + id + "\" name=\"" + id + "\" ></textarea>");
+                            break;
+                    }
+                    fieldSet.append(label);
+                    fieldSet.append(input);
+                });
+                $("body").append(fieldSet);
+            });
+        });
+    </script>
+
+    <fieldset id="buildyourform">
+        <legend>Build your own form!</legend>
+    </fieldset>
+    <input type="button" value="Preview form" class="add" id="preview" />
+    <input type="button" value="Add a field" class="add" id="add" />
+</body>
+</html>
+        

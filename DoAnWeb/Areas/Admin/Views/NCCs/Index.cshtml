@@ -1,0 +1,103 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.NCC>
+
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <style>
+        .table tbody tr td {
+            padding:0px;
+            font-size: 16px;
+            color: black;
+            text-align: left;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 300;
+            white-space: nowrap;
+            width:170px;
+        }
+        .table thead tr th {
+            font-size: 17px;
+            color: black;
+            text-align: left;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 500;
+            white-space: nowrap;
+            width: 170px;
+            padding-left: 0px;
+        }
+        .table {
+            margin-top:30px;
+            margin-left: 17px;
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+        p a{
+            margin-top:100px;
+            margin-left: 48px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .email {
+            white-space: nowrap;
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top:40px;margin-left:60px;">
+        <p>
+            @Html.ActionLink("Tạo mới", "Create")
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên nhà cung cấp
+                    </th>
+                    <th>
+                        Địa chỉ
+                    </th>
+                    <th>
+                        Số điện thoại
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenNCC)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DiaChi)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDT)
+                        </td>
+                        <td>
+                            <p class="email">@Html.DisplayFor(modelItem => item.Email)</p>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Sửa", "Edit", new { id = item.MaNCC }) |
+                            @Html.ActionLink("Chi tiết", "Details", new { id = item.MaNCC }) |
+                            @Html.ActionLink("Xóa", "Delete", new { id = item.MaNCC })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

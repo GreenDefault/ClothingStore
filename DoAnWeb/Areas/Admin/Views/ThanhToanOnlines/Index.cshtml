@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.ThanhToanOnline>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <style>
+        .table tbody tr td {
+            padding: 10px 0px;
+            font-size: 16px;
+            color: black;
+            text-align: left;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 300;
+            white-space: nowrap;
+            width: 170px;
+        }
+
+        .table thead tr th {
+            padding: 10px 60px;
+            font-size: 17px;
+            color: black;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 500;
+            white-space: nowrap;
+            width: 170px;
+            text-align: left;
+        }
+
+        .table {
+            margin-left: 22px;
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+
+        p a {
+            margin-top: 100px;
+            margin-left: 48px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        th {
+            height: 50px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top:40px;margin-left:60px;">
+        <p>
+            @Html.ActionLink("Tạo mới", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th style="text-align:left;padding-left:30px;padding-top:20px;">
+                    Tên thẻ
+                </th>
+                <th>
+                    Ảnh
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenThe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Anh)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sủa", "Edit", new { id = item.MaThe }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaThe }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaThe })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

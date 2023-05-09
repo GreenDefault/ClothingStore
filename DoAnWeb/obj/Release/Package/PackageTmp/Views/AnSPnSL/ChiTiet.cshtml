@@ -1,0 +1,686 @@
+﻿@model DoAnWeb.ViewModels.ctSPnCMT
+@using DoAnWeb.Areas.Admin.Models;
+@{
+    ViewBag.Title = "ChiTiet";
+}
+@{
+    var imm = ViewBag.Soluong;
+
+}
+<script>
+       $(document).ready(function () {
+        @*$("#occho").on("change", function () {
+            var im = {};
+            @{ List<long> aaab = new List<long>();}
+            @foreach(var item in Model.sanp.Luongs)
+            {
+                if (!aaab.Contains(item.MaMau))
+                {
+                    var ccc = "\n\t\t\tim[\"" + item.MaMau + "\"]= new Array();";
+                    @Html.Raw(ccc);
+                    aaab.Add(item.MaMau);
+                }
+            }
+            @foreach(var item in Model.sanp.Luongs)
+            {
+                var ccc = "\n\t\t\tim[\"" + item.MaMau + "\"].push(\"" + item.Size.TenSize + "\", \"" + item.MaSize + "\");";
+                @Html.Raw(ccc);
+            }
+            var selected = $(this).children("#occho option:selected").val();
+            $("#oat").empty();
+            var thang = $("<option></option>");
+            $("#oat").append(thang);
+            for (s = 0; s < im[selected].length; s+=2)
+            {
+                var mcklip = s + 1;
+                var option = $("<option></option>").attr("value", im[selected][mcklip]).text(im[selected][s]);
+                $("#oat").append(option);
+            }
+
+        })*@
+        @*$("#oat").on("change", function () {
+            var aim = {};
+            @{ List<long> abab = new List<long>();}
+            @foreach(var item in Model.sanp.Luongs)
+            {
+                if (!aaab.Contains(item.MaMau))
+                {
+                    var ccc = "\n\t\t\taim[\"" + item.MaMau + "\"]= new Array();";
+                    @Html.Raw(ccc);
+                    abab.Add(item.MaMau);
+                }
+            }
+            @foreach(var item in Model.sanp.Luongs)
+            {
+                var y = "\n\t\t\taim[\"" + item.MaMau + "\"]= new Array();";
+                @Html.Raw(y);
+            }
+            @foreach(var item in Model.sanp.Luongs)
+            {
+                var aint = "\n\t\t\taim[\"" + item.MaMau + "\"][\"" + item.MaSize + "\"] = new Array();";
+                @Html.Raw(aint);
+            }
+        @foreach(var item in Model.sanp.Luongs)
+            {
+                var u = "\n\t\t\taim[\"" + item.MaMau + "\"][\"" + item.MaSize + "\"].push(\"" + item.SoLuong1 + "\");";
+                @Html.Raw(u);
+            }
+            var tg = document.getElementById("occho");
+            var selMau = tg.options[tg.selectedIndex].value;
+            var selSize = $(this).children("#oat option:selected").val();
+            document.getElementById("sl").setAttribute("max", aim[selMau][selSize]);
+        })*@
+
+               $('button#DangCMT').click(function () {
+               var Cmt = $('textarea#CMT').val();
+               var rate = $('input[type=hidden]#rate');
+               if (Cmt == null || Cmt === "") {
+                   event.preventDefault();
+                   alert("Vui lòng nhập nội dung bình luận trước khi đăng!");
+               } else {
+                   $.ajax({
+                       url: "@Url.Action("CCMT", "AnSPnSL")",
+                       type: 'POST',
+                       data: {
+                           'masp': $('input[type=hidden]#masp').val(),
+                           'cmt': Cmt,
+                           'rate': $('input[type=hidden]#rate').val()
+                       },
+                       success: function (result) {
+                           $('div#binhluan').html(result);
+                           $('textarea#CMT').val('');
+                       }
+                   })
+               }
+               });
+       });
+
+    function vote(number,abc) {
+        $('input#rate').val(number);
+        var buttons = document.querySelectorAll('button.btn_vote');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].style.border = "1px solid gray";
+        }
+        abc.style.border = "2px solid red";
+    }
+    function chonmau(abc, s) {
+        var currentMauVal = $(abc).parent().parent().find('input[type=hidden].mamau').attr('value');
+        var currentSizeVal = document.querySelector('input[type=hidden].masize').value;
+        if (currentMauVal != parseInt(s) && currentSizeVal == 0) {
+            $.ajax({
+                url: "@Url.Action("chonmau")",
+                type: 'POST',
+                data: {
+                    'mau': parseInt(s),
+                    'masp': @Model.sanpham.sanp.Sanss.MaSP
+                    },
+                success: function (result) {
+                    $('p#oat').html(result);
+                    $(abc).parent().parent().find('input[type=hidden].mamau').attr('value', parseInt(s));
+                    var buttons = document.querySelectorAll('button[class="btn-chonmau"]');
+                    for (var i = 0; i < buttons.length; i++) {
+                        buttons[i].style.border = "1px solid gray";
+                    }
+                    abc.style.border = "1px solid red";
+                }
+            })
+        }
+        else if (currentMauVal == parseInt(s)) {
+            $.ajax({
+                url: "@Url.Action("chonmau")",
+                type: 'POST',
+                data: {
+                    'mau': -1,
+                    'masp': @Model.sanpham.sanp.Sanss.MaSP
+                    },
+                success: function (result) {
+                    $('p#oat').html(result);
+                    $(abc).parent().parent().find('input[type=hidden].mamau').attr('value', 0);
+                    var buttons = document.querySelectorAll('button[class="btn-chonmau"]');
+                    for (var i = 0; i < buttons.length; i++) {
+                        buttons[i].style.border = "1px solid gray";
+                    }
+                    document.querySelector('input[type=hidden].masize').value = 0;
+                }
+            })
+        }
+        else {
+            $.ajax({
+                url: "@Url.Action("tinhSLMau")",
+                type: 'POST',
+                data: {
+                    'masp': @Model.sanpham.sanp.Sanss.MaSP,
+                    'mau': parseInt(s),
+                    'size': currentSizeVal,
+                    },
+                success: function (result) {
+                    if (result.xoa != null) {
+                        console.log(result.xoa);
+                        document.querySelector('button[value="' + result.xoa + '"].masize').remove();
+                        document.querySelector('input[type=hidden].masize').value = 0;
+                    }
+                    else {
+                        document.querySelector('input[type=number]#sl').setAttribute('max', result.soLuong);
+                    }
+                }
+            })
+            $(abc).parent().parent().find('input[type=hidden].mamau').attr('value', parseInt(s));
+            var buttons = document.querySelectorAll('button[class="btn-chonmau"]');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.border = "1px solid gray";
+            }
+            abc.style.border = "1px solid red";
+        }
+    }
+    function chonsize(abc, s) {
+        var currentMauVal = document.querySelector('input[type=hidden].mamau').value;
+        var currentSizeVal = $(abc).parent().parent().find('input[type=hidden].masize').attr('value');
+        if (currentSizeVal != parseInt(s) && currentMauVal == 0) {
+            $.ajax({
+                url: "@Url.Action("chonsize")",
+                type: 'POST',
+                data: {
+                    'size': parseInt(s),
+                    'masp': @Model.sanpham.sanp.Sanss.MaSP
+                    },
+                success: function (result) {
+                    $('p#occho').html(result);
+                    $(abc).parent().parent().find('input[type=hidden].masize').attr('value', parseInt(s));
+                    var buttons = document.querySelectorAll('button[class="masize"]');
+                    for (var i = 0; i < buttons.length; i++) {
+                        buttons[i].style.border = "1px solid gray";
+                    }
+                    abc.style.border = "1px solid red";
+                }
+            })
+        }
+        else if (currentSizeVal == parseInt(s)) {
+            $.ajax({
+                url: "@Url.Action("chonsize")",
+                type: 'POST',
+                data: {
+                    'size': -1,
+                    'masp': @Model.sanpham.sanp.Sanss.MaSP
+                    },
+                success: function (result) {
+                    $('p#occho').html(result);
+                    $(abc).parent().parent().find('input[type=hidden].masize').attr('value', 0);
+                    var buttons = document.querySelectorAll('button[class="masize"]');
+                    for (var i = 0; i < buttons.length; i++) {
+                        buttons[i].style.border = "1px solid gray";
+                    }
+                    document.querySelector('input[type=hidden].mamau').value = 0;
+                }
+            })
+        }
+        else {
+            $.ajax({
+                url: "@Url.Action("tinhSLSize")",
+                type: 'POST',
+                data: {
+                    'masp': @Model.sanpham.sanp.Sanss.MaSP,
+                    'mau': currentMauVal,
+                    'size': parseInt(s),
+                    },
+                success: function (result) {
+                    if (result.xoa != null) {
+                        console.log(result.xoa);
+                        document.querySelector('button[value="' + result.xoa + '"].btn-chonmau').remove();
+                        document.querySelector('input[type=hidden].mamau').value = 0;
+                    }
+                    else {
+                        document.querySelector('input[type=number]#sl').setAttribute('max', result.soLuong);
+                    }
+                }
+            })
+            $(abc).parent().parent().find('input[type=hidden].masize').attr('value', parseInt(s));
+            var buttons = document.querySelectorAll('button[class="masize"]');
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.border = "1px solid gray";
+            }
+            abc.style.border = "1px solid red";
+        }
+    }
+
+    function crepcmt(abc) {
+        var repc = $(abc).parent().find('textarea#RepCMT').val();
+        if (repc == null || repc === "") {
+            alert('Vui lòng nhập nội dung trước khi bình luận!');
+            event.preventDefault();
+        } else {
+            $.ajax({
+                url: "@Url.Action("CRepCMT", "AnSPnSL")",
+                       type: 'POST',
+                       data: {
+                           'macmt': $(abc).data('sub'),
+                           'cmt': repc,
+                           'masp': @Model.sanpham.sanp.Sanss.MaSP
+                       },
+                       success: function (result) {
+                           var a = $(abc).data('sub');
+                           $('div[id="replycmts '+a+'"]').html(result);
+                           console.log('div#replycmts ' + a);
+                           console.log(result);
+                       }
+            })
+        }
+    }
+
+</script>
+<html>
+<head>
+    <title>Chi tiết sản phẩm</title>
+    <style>
+        body {
+            background-color: #efefef;
+        }
+
+        .main {
+            display: flex;
+            padding-top: 100px;
+        }
+
+        .main_left {
+            width: 434px;
+            margin-left: 79px;
+            padding-top: 35px;
+            padding-bottom: 30px;
+            text-align: center;
+            background-color: white;
+            border-right: 1px solid #e2e2e2;
+        }
+
+        .main_right {
+            width: 760px;
+            padding-top: 17px;
+            background-color: white;
+        }
+
+        th {
+            padding: 12px 50px 12px 20px;
+            font-size: 17px;
+            font-weight: 100;
+        }
+
+        select#oat {
+            height: 30px;
+            width: 135px;
+        }
+
+        select#occho {
+            width: 134px;
+            height: 30px;
+        }
+
+        input#sl {
+            width: 140px;
+            height: 33px;
+        }
+
+        input[type="submit"] {
+            width: 140px;
+            background: #ff2a2a;
+            height: 38px;
+            border: none;
+            color: white;
+        }
+
+        .SPLQ, .product-list {
+            padding-top: 17px;
+            height: 85px;
+            background-color: white;
+            margin-top: 25px;
+            margin: 20px 76px 0px 79px;
+            border-radius: 7px;
+        }
+
+        .sp {
+            height: 57px;
+            padding-top: 17px;
+            background-color: white;
+            margin-top: 25px;
+            margin: 20px 76px 0px 79px;
+            border-radius: 7px;
+        }
+
+        .product-list {
+            height: auto;
+            padding-left: 46px;
+            margin-bottom: 12px;
+        }
+
+        label {
+            margin-left: 54px;
+            font-size: large;
+            margin-right: 41px;
+            margin-top: 13px;
+        }
+
+        .card_full {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .card {
+            width: 193px;
+            height: 355px;
+            color: rgb(140, 0, 255);
+            margin: 15px 11px 35px 8px;
+            border: 1px solid rgb(240, 240, 255);
+            text-align: center;
+            position: static;
+        }
+
+            .card:hover {
+                border: 1px solid blue;
+            }
+
+        .card-img-top {
+            width: 100%;
+            height: 260px;
+        }
+
+        .row.row_product {
+            margin: 25px 0px 20px 33px;
+        }
+
+        textarea {
+            overflow: auto;
+            resize: vertical;
+            width: 55%;
+            height: 50px;
+            margin: 20px 53px;
+            padding: 12px 0px;
+            border: none;
+            border-bottom: 1px solid;
+        }
+        .cm-comment {
+            background-color: white;
+            height: auto;
+            margin: 20px 78px;
+            border-radius: 7px;
+            padding-bottom: 20px;
+        }
+
+        img#img_avt {
+            width: 50px;
+            height: 50px;
+            border: none;
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+
+        .avt {
+            display: flex;
+            margin-top: 20px;
+            padding-top: 15px;
+        }
+
+        .rep {
+            display: flex;
+            margin-top: 10px;
+            padding-top: 15px;
+        }
+
+        div#avt_user {
+            margin: 34px 0px 10px 10px;
+        }
+
+        .btn_vote {
+            min-width: 110px;
+            height: 36px;
+            border: 1px solid #e2e2e2;
+            background-color: white;
+            margin-top: -5px;
+            margin-right: 10px;
+        }
+
+        button {
+            height: 34px;
+            width: 85px;
+            border: 1px solid #ccc;
+            background-color: white;
+            margin-right: 10px;
+        }
+
+            button:hover {
+                border: 1px solid red;
+            }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0rem;
+        }
+
+        table {
+            margin-left: 30px;
+        }
+
+        input.buy {
+            margin: 20px 0px 0px 52px;
+            width: 245px;
+            height: 42px;
+        }
+
+        button.masize {
+            margin-bottom: 15px;
+        }
+
+        .tensp {
+            margin-bottom: 30px;
+            margin-left: 52px;
+            margin-right: 52px;
+            font-size: 22px;
+            margin: 10px 52px 10px 52px;
+            color: red;
+        }
+
+        .ship {
+            padding: 20px 20px;
+        }
+
+        .card-title {
+            white-space: nowrap;
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #DangCMT {
+            margin-top: 36px;
+        }
+
+        div#binhluan {
+            margin: 0px 78px;
+            background: white;
+            border-radius: 5px;
+        }
+
+        .repcmt {
+            margin-left: 110px;
+            padding-bottom: 55px;
+        }
+
+        a#reply {
+            background: blue;
+            color: white;
+            border: 1px solid;
+        }
+
+        #rep {
+            height: 35px;
+            padding-top: 15px;
+            display: flex;
+        }
+
+        form#ddd {
+            display: flex;
+        }
+
+        textarea#RepCMT {
+            width: 620px;
+            margin: -15px 31px 0px -25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+
+        <div class="main_left">
+            @{ long kkkk = 0;}
+            @foreach (var item in Model.sanpham.sanp.Anhh)
+            {
+                <img id="anh" style="width:355px; height:490px;" class="anh" src="@Url.Content("~/Assets/images/" + item.Anh)" />
+                kkkk = item.MaMau;
+                break;
+            }
+        </div>
+
+        <div class="main_right">
+
+            @using (Html.BeginForm("Chot", "AnSPnSL", FormMethod.Post))
+            {
+                <input type="hidden" name="MaSP" value="@Model.sanpham.sanp.Sanss.MaSP" />
+                <p class="tensp">@Model.sanpham.sanp.Sanss.TenSP</p>
+                <table>
+                    <tr>
+                        <th class="ship">Giá sản phẩm</th>
+                        <th class="ship" style="color:red;font-size:21px;">@Model.sanpham.sanp.Sanss.DonGia VND</th>
+                    </tr>
+                    <tr>
+                        <th>Thương hiệu</th>
+                        <th style="font-size:20px;">@Model.sanpham.sanp.Sanss.ThuongHieu.TenTH</th>
+                    </tr>
+                    <tr>
+                        <th>Màu</th>
+                        <th>
+                            <input type="hidden" value="0" class="mamau" name="mamau" />
+                            <p id="occho" name="MaMau">
+                                @{ Html.RenderPartial("_Mau", Model.sanpham.sanp);}
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Size</th>
+                        <th>
+                            <input type="hidden" value="0" class="masize" name="masize" />
+                            <p id="oat" name="MaSize">
+                                @{Html.RenderPartial("_Size", Model.sanpham.sanp.Luongs);}
+                            </p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>Số lượng</th>
+                        <th><input type="number" value="1" min="0" id="sl" name="SoLuong" /></th>
+                    </tr>
+
+                    <tr>
+                        <th class="ship">Vận chuyển</th>
+                        <th class="ship">50,000 vnd (Áp dụng với mọi sản phẩm)</th>
+                    </tr>
+
+                </table>
+                <input class="buy" type="submit" value="Mua" />
+            }
+        </div>
+
+    </div>
+
+    <div class="SPLQ">
+        <label>Đánh giá sản phẩm </label>
+        <button class="btn_vote" onclick="vote(5,this)">Rất tốt</button>
+        <button class="btn_vote" onclick="vote(4,this)">Tốt</button>
+        <button class="btn_vote" onclick="vote(3,this)">Trung bình</button>
+        <button class="btn_vote" onclick="vote(2,this)">Kém</button>
+        <button class="btn_vote" onclick="vote(1,this)">Rất kém</button>
+    </div>
+    @if (Session["user_name"] == null)
+    {
+        <div class="cm-comment">
+            <div class="avt">
+                <div><img id="img_avt" src="~/Assets/images/user1.jpg" /></div>
+                <div id="avt_user">@Session["tennd"]</div>
+            </div>
+            <form style="margin-left: 54px;display:flex;">
+                <input type="hidden" id="rate" value="0" />
+                <input type="hidden" id="masp" value="@Model.sanpham.sanp.Sanss.MaSP" />
+                <textarea placeholder="Vui lòng đăng nhập để bình luận" id="CMT" name="CMT"></textarea>
+                <button type="button" id="DangCMT" disabled>Đăng</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        DoAnWebEntities db = new DoAnWebEntities();
+        var b = long.Parse(Session["user_name"].ToString());
+        var hd = db.CT_HoaDon.Where(m => m.HoaDon.MaTK == b).Where(m => m.MaSP == Model.sanpham.sanp.Sanss.MaSP).FirstOrDefault();
+        if (hd != null)
+        {
+            <div class="cm-comment">
+                <div class="avt">
+                    <div><img id="img_avt" src="~/Assets/images/user1.jpg" /></div>
+                    <div id="avt_user">@Session["tennd"]</div>
+                </div>
+                <form style="margin-left: 54px;display:flex;">
+                    <input type="hidden" id="rate" value="0" />
+                    <input type="hidden" id="masp" value="@Model.sanpham.sanp.Sanss.MaSP" />
+                    <textarea placeholder="Nội dung bình luận..." id="CMT" name="CMT"></textarea>
+                    <button type="button" id="DangCMT">Đăng</button>
+                </form>
+            </div>
+        }
+        else
+        {
+            <div class="cm-comment">
+                <div class="avt">
+                    <div><img id="img_avt" src="~/Assets/images/user1.jpg" /></div>
+                    <div id="avt_user">@Session["tennd"]</div>
+                </div>
+                <form style="margin-left: 54px;display:flex;">
+                    <input type="hidden" id="rate" value="0" />
+                    <input type="hidden" id="masp" value="@Model.sanpham.sanp.Sanss.MaSP" />
+                    <textarea placeholder="Bạn cần mua hàng trước khi được đánh giá sản phẩm!" id="CMT" name="CMT"></textarea>
+                    <button type="button" id="DangCMT" disabled>Đăng</button>
+                </form>
+            </div>
+        }
+    }
+    <div id="binhluan">
+        @{Html.RenderPartial("_Comment", Model.cmt); }
+    </div>
+    <div class="sp">
+        <label style="margin-top:0px;">Sản phẩm liên quan</label>
+    </div>
+
+    <div class="row product-list">
+        @foreach (var item in Model.sanpham.lqs.ASPSLs)
+        {
+            <div id="splq">
+                <a class="card_full" href="@Url.Action("ChiTiet", "AnSPnSL", new { id = item.Sanss.MaSP})">
+                    <div class="card">
+                        @{
+                            List<long> checkmau = new List<long>();
+                        }
+                        @foreach (var anh in item.Anhh)
+                        {
+                            if (!checkmau.Contains(anh.MaMau))
+                            {
+                                <img src="@Url.Content("~/Assets/images/" + anh.Anh)" class="card-img-top" />
+                                checkmau.Add(anh.MaMau);
+                                break;
+                            }
+
+                        }
+                        <div class="card-body">
+                            <p class="card-title">@item.Sanss.TenSP</p>
+                            <p class="card-text" style="font-size:15px; margin-top:7px;">Giá: @item.Sanss.DonGia VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        }
+    </div>
+
+</body>
+</html>

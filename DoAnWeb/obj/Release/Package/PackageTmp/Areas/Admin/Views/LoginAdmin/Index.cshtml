@@ -1,0 +1,25 @@
+﻿
+@using (Html.BeginForm("LoginAd", "LoginAdmin", FormMethod.Post))
+{
+    <div class="form-group">
+        <label class="small mb-1" for="inputEmailAddress">Tên đăng nhập</label>
+        <input class="form-control py-4" id="user_name" name="user_name" type="text" placeholder="Enter username" />
+    </div>
+    <div class="form-group">
+        <label class="small mb-1" for="inputPassword">Mật khẩu</label>
+        <input class="form-control py-4" id="pass_word" name="pass_word" type="password" placeholder="Enter password" />
+    </div>
+    <div class="form-group">
+        <div class="custom-control custom-checkbox">
+            <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
+            <label class="custom-control-label" for="rememberPasswordCheck">Nhớ mật khẩu</label>
+        </div>
+    </div>
+    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+        <a class="small" href="password.html">Quên mật khẩu?</a>
+        <input type="submit" name="Login" value="Login" />
+    </div>
+}
+
+<h2>View</h2>
+

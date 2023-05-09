@@ -1,0 +1,288 @@
+﻿
+@{Layout = null; }
+<html>
+<head>
+    <title>Đăng ký</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="~/Assets/login.css" />
+    <link href="~/Assets/fontawesome-free-5.15.2-web/css/all.min.css" rel="stylesheet">
+    <script defer src="~/Assets/fontawesome-free-5.15.2-web/js/all.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .lg {
+            background: url(../Assets/images/background.jpg) no-repeat;
+            background-size: cover;
+            margin-top: 40px;
+        }
+
+        .login1 {
+            margin: auto;
+            width: 750px;
+            height: 550px;
+            padding-top: 30px;
+            background-color: white;
+        }
+
+        .text_DN {
+            margin: auto;
+            text-align: center;
+            padding-bottom: 45px;
+        }
+
+        button.username.DN {
+            margin-top: 4px;
+        }
+
+        input.form-control.username1 {
+            width: 295px;
+            margin-top:20px;
+        }
+
+        button.btn.btn-primary.Btn_Login {
+            border: none;
+            height: 38px;
+            width: 295px;
+            background-image: linear-gradient(to right, rgb(100, 160, 230), rgb(70, 106, 226),rgb(175, 25, 235),rgb(255, 0, 221));
+            color: white;
+            margin-top: 10px;
+        }
+
+        #or {
+            margin: 15px 145px;
+        }
+
+        .fb {
+            padding-top: 0px;
+            text-align: center;
+        }
+
+        .or {
+            background-color: rgb(130, 150, 238);
+            color: rgb(255, 255, 255);
+            width: 120px;
+            height: 37px;
+            border: none;
+        }
+
+            .or a {
+                text-decoration: none;
+                color: white;
+            }
+
+                .or a:hover {
+                    text-decoration: none;
+                    color: white;
+                }
+
+        #registration_now {
+            display: inline-flex;
+            margin-left: 42px;
+            padding: 45px 0px;
+        }
+
+        .dangkyngay {
+            font-size: 0.9rem;
+        }
+
+        .dangkyngay1 {
+            margin-left: 5px;
+        }
+            .dangkyngay1 a:hover{
+                text-decoration:none;
+            }
+
+            #registration_now a:hover {
+                text-decoration: none;
+            }
+        h2.text_DK {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        #error-name,#error-name1, #error-adress, #error-password, #error-password1, #error-phone, #error-username, #error-email {
+            margin-top: 0px;
+            color: red;
+            font-size: 15px;
+        }
+
+        #ok-name {
+            margin-top: 0px;
+            color: #00e100;
+            font-size: 15px;
+        }
+        
+    </style>
+</head>
+<body class="lg">
+    <div class="login1">
+
+        @using (Html.BeginForm("XacNhan", "DangKy", FormMethod.Post, new { onsubmit = "return send(event);" }))
+        {
+            <h2 class="text_DK">Đăng ký</h2>
+            <form onsubmit="return false; event.preventDefault();" name="abc">
+
+                <div style="display:flex;margin-left:50px;">
+                    <div style="flex:1">
+                        <input class="form-control username1" id="name" name="Ten" type="text" placeholder="Tên người dùng">
+                        <p id="error-name"></p>
+                        <span id="ok-name"></span>
+
+                        <input class="form-control username1" id="phone" name="SDT" type="text" placeholder="Số điện thoại">
+                        <p id="error-phone"></p>
+
+                        <input class="form-control username1" id="email" name="email" type="text" placeholder="Email">
+                        <p id="error-email"></p>
+
+                        <p class="dangkyngay dangkyngay1" style="margin:20px 0px;">@Html.ActionLink("Quay lại trang đăng nhập?", "Index", "Login") </p>
+                    </div>
+
+                    <div style="flex:1">
+                        <input class="form-control username1" id="adress" name="diachi" type="text" placeholder="Địa chỉ">
+                        <p id="error-adress"></p>
+
+                        <input class="form-control username1" id="user_name" name="TenDN" type="text" placeholder="Tên đăng nhập">
+                        <p id="error-username"></p>
+
+                        <input class="form-control username1" id="password" name="MatKhau" type="password" placeholder="Mật khẩu">
+                        <p id="error-password"></p>
+
+                        <input class="form-control username1" id="password1" name="pass_word" type="password" placeholder="Nhập lại mật khẩu">
+                        <p id="error-password1"></p>
+
+                        <button class="btn btn-primary Btn_Login" type="submit" value="Đăng ký">Đăng ký</button>
+                    </div>
+                   
+                </div>
+            </form>
+
+            <script>
+
+            function send(e) {
+                var a = true;
+                var name = document.getElementById('name').value;
+                var phone = document.getElementById('phone').value;
+                var email = document.getElementById('email').value;
+
+                var adress = document.getElementById('adress').value;
+                var user_name = document.getElementById('user_name').value;
+                var password = document.getElementById('password').value;
+                var password1 = document.getElementById('password1').value;
+
+                // User name
+                if (name.trim().length <= 0) {
+                    document.getElementById('error-name').innerHTML = 'Hãy điền tên người dùng!';
+                    e.preventDefault();
+                    a = false;
+
+                } else if (name.trim().length >= 20) {
+                    document.getElementById('error-name').innerHTML = 'Tên không được lớn hơn 20 ký tự';
+                    e.preventDefault();
+                    a = false
+                } else {
+                    document.getElementById('error-name').innerHTML = '';
+                }
+
+                // Phone
+                if (phone.trim().length <= 0) {
+                    document.getElementById('error-phone').innerHTML = 'Hãy điền số điện thoại!';
+                    e.preventDefault();
+                    a = false;
+
+                } else if (phone.trim().length > 10) {
+                    document.getElementById('error-phone').innerHTML = 'SDT không được lớn hơn 10 số';
+                    e.preventDefault();
+                    a = false
+                } else {
+                    document.getElementById('error-phone').innerHTML = '';
+                }
+
+                // Email
+                if (email.trim().length <= 0) {
+                    document.getElementById('error-email').innerHTML = 'Hãy điền email!';
+                    e.preventDefault();
+                    a = false;
+
+                } else if (email.trim().length >= 30) {
+                    document.getElementById('error-email').innerHTML = 'SDT không được lớn hơn 30 ký tự';
+                    e.preventDefault();
+                    a = false
+                } else {
+                    document.getElementById('error-email').innerHTML = '';
+                }
+
+                // Adress
+                if (adress.trim().length <= 0) {
+                    document.getElementById('error-adress').innerHTML = 'Hãy điền địa chỉ của bạn!';
+                    e.preventDefault();
+                    a = false;
+                } else {
+                    document.getElementById('error-adress').innerHTML = '';
+                }
+
+
+                // Tên tài khoản
+                if (user_name.trim().length <= 0) {
+                    document.getElementById('error-username').innerHTML = 'Hãy điền tên đăng nhập!';
+                    e.preventDefault();
+                    a = false;
+
+                } else if (user_name.trim().length <= 2) {
+                    document.getElementById('error-username').innerHTML = 'Tên phải lớn hơn 2 ký tự';
+                    e.preventDefault();
+                    a = false
+                } else if (user_name.trim().length >= 10) {
+                    document.getElementById('error-username').innerHTML = 'Tên không lớn hơn 10 ký tự';
+                    e.preventDefault();
+                    a = false;
+                }
+                else {
+                    document.getElementById('error-username').innerHTML = '';
+                }
+
+                // Password
+                if (password.trim().length <= 0) {
+                    document.getElementById('error-password').innerHTML = 'Hãy điền mật khẩu!';
+                    e.preventDefault();
+                    a = false;
+                }
+                else if (password.trim().length >= 20) {
+                    document.getElementById('error-password').innerHTML = 'Mật khẩu không được lớn hơn 20 ký tự!';
+                    e.preventDefault();
+                    a = false;
+                }else {
+                    document.getElementById('error-password').innerHTML = '';
+
+                }
+
+                // Password again
+                if (password1.trim().length <= 0) {
+                    document.getElementById('error-password1').innerHTML = 'Hãy nhập lại mật khẩu!';
+                    e.preventDefault();
+                    a = false;
+                }
+                else if (password1.trim().length >= 20) {
+                    document.getElementById('error-password1').innerHTML = 'Mật khẩu không được lớn hơn 20 ký tự!';
+                    e.preventDefault();
+                    a = false;
+                } else if (password1.value != password.value) {
+                        document.getElementById('error-password1').innerHTML = 'Mật khẩu không trùng nhau!';
+                        e.preventDefault();
+                        a = false;
+                } else {
+                    document.getElementById('error-password1').innerHTML = '';
+
+                }
+
+                return a;
+            }
+            </script>
+        }
+    </div>
+
+</body>
+</html>

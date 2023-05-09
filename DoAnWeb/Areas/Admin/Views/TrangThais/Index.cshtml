@@ -1,0 +1,33 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.TrangThai>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenTrangThai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenTrangThai)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaTrangThai }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaTrangThai }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaTrangThai })
+        </td>
+    </tr>
+}
+
+</table>

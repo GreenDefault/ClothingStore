@@ -1,0 +1,442 @@
+﻿@model DoAnWeb.ViewModels.ViewModel_TTnGH
+@using DoAnWeb.ViewModels
+@{
+    ViewBag.Title = "CheckOut";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Phương thức thanh toán</title>
+    <script>
+        $(document).ready(function () {
+            @foreach(var item in Model.TTs)
+            {
+                string a = "$(\"#" + item.MaThe + "\").click(function () { document.getElementById(\"the\").value = " + item.MaThe + ";});";
+                @Html.Raw(a);
+            }
+
+            });
+    </script>
+    <style>
+
+        body {
+            background-color: #f8f6f6;
+        }
+        .none {
+            height: 100px;
+        }
+
+        input#buyall\ tt {
+            height: 44px;
+            margin-top: 15px;
+            width: 19%;
+        }
+
+        input#buyall {
+            width: 38%;
+            height: 44px;
+            margin: 30px 0px;
+        }
+
+        .tab button {
+            background-color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+            color: black;
+        }
+
+        div#Offline {
+            margin: 0px;
+            padding: 0px;
+            border:none;
+        }
+
+        .aa {
+            margin: 0px;
+        }
+
+        button#defaultOpen {
+            margin: 25px 10px 0px 100px;
+            border: 1px solid;
+        }
+        .tab {
+            overflow: hidden;
+            background-color: white;
+            height: 100px;
+            border-bottom: 1px solid #105aff;
+            margin-left:52px;
+        }
+
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                .tab button:hover {
+                    background-color: #e0efff;
+                }
+
+
+                .tab button.active {
+                    border: none;
+                    background-color: #105aff;
+                    color: white;
+                }
+
+
+        .tabcontent {
+            margin: 40px 50px;
+            border: none;
+            display: none;
+        }
+
+        #Offline{
+            display: block;
+
+        }
+
+        .topright {
+            float: right;
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        input#user {
+            width: 45%;
+            height: 37px;
+            margin: 9px 0px 20px 0px;
+        }
+
+        button.btn.btn-primary.pay_online {
+            width: 150px;
+            margin-top: 7px;
+        }
+
+        .row_top_left {
+            display: inline-flex;
+        }
+
+        #img {
+            width: 92px;
+            height: 57px;
+            border: none;
+        }
+
+        .username {
+            margin: 20px 0px;
+        }
+
+        input#user\ username {
+            margin-bottom: 20px;
+            width: 45%;
+        }
+
+        .main {
+            background: white;
+            margin: 0px 75px;
+        }
+
+        .table {
+            margin: 10px 57px;
+            width:90%;
+            background-color: white;
+        }
+
+        tr th {
+            text-align: center;
+        }
+
+        td {
+            width: 120px;
+        }
+
+        .table td, .table th {
+            padding: .75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+            padding: 20px 0px 20px 0px;
+        }
+
+        hr {
+            margin-top: 3rem;
+            margin-bottom: 2rem;
+            border: 0;
+            border-top: 1px solid rgba(0,0,0,.1);
+        }
+
+        .img_btn {
+            border: none;
+            background: white;
+            padding: 0px;
+        }
+
+        .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+            margin:0px;
+            padding:0px;
+        }
+
+        .Left_tt
+
+        {
+            margin: 0px 50px;
+        }
+      
+        label.label_name {
+            margin: 10px 0px 0px 0px;
+        }
+
+        .TTSau {
+            margin-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        button.aa {
+            height: 49px;
+            padding: 12px 20px;
+            margin-top: 28px;
+            border: 1px solid #105aff;
+        }
+
+        .form-control{
+            width: 85%;
+        }
+
+        .first {
+            margin: 0px 75px;
+            padding-top: 20px;
+            padding-bottom: 30px;
+            background: white;
+            margin-bottom: 30px;
+        }
+
+        #error-name, #error-phone, #error-email, #error-adress{
+            color:red;
+            font-size:15px;
+        }
+
+        .tensp {
+            white-space: nowrap;
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .ac{
+            margin-top:24px;
+        }
+
+    </style>
+</head>
+<body>
+    @{ long money = 0;}
+
+    <div class="none"></div>
+    <div class="first">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Sản phẩm</td>
+                    <td>Tên sản phẩm</td>
+                    <td>Đơn giá</td>
+                    <td>Màu</td>
+                    <td>Size</td>
+                    <td>Thương hiệu</td>
+                    <td>Số lượng</td>
+                    <td>Thành tiền</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in (List<Cokess>)Session["Cart"])
+                {
+
+                    money += long.Parse(item.gh.ThanhTien.ToString());
+
+                    <tr>
+                        <td style="width:50px;"><img style="width:50px;height:67px;" src="@Url.Content("~/Assets/images/" + item.anh)" /></td>
+                        <td><p class="tensp ac">@item.gh.SanPham.TenSP</p></td>
+                        <td><p class="ac">@item.gh.SanPham.DonGia VND</p></td>
+                        <td><p class="ac">@item.mau</p></td>
+                        <td><p class="ac">@item.size</p></td>
+                        <td><p class="ac">@item.th</p></td>
+                        <td><p class="ac">@item.gh.SoLuong</p></td>
+                        <td><p class="ac">@item.gh.ThanhTien VND</p></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <span style="margin-left: 930px; margin-bottom:10px;color:red;font-size:16px; border-bottom:none; text-align:right;">Tổng tiền: @money VND</span>
+    </div>
+
+    <div class="main">
+        <div class="tab">
+
+            <button class="aa" onclick="opentab(event, 'Offline')" id="none" value="Thanh toán khi nhận hàng">Thanh toán khi nhận hàng</button>
+            <button class="aa" style="margin-left:20px; width:235px;" onclick="opentab(event, 'Online')">Thanh toán Online</button>
+            <script>
+                function opentab(evt, TT) {
+                    var i, tabcontent, aa;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    aa = document.getElementsByClassName("aa");
+                    for (i = 0; i < aa.length; i++) {
+                        aa[i].className = aa[i].className.replace(" active", "");
+                    }
+                    document.getElementById(TT).style.display = "block";
+                    evt.currentTarget.className += " active";
+                }
+
+                document.getElementById("bb").click();
+            </script>
+        </div>
+
+        @using (Html.BeginForm("Offline", "TTnGH", FormMethod.Post, new { onsubmit="return send(event);"}))
+        {
+
+            <div id="Offline" class="tabcontent">
+
+                <div class="TTSau" style="display:flex;">
+                    <form onsubmit="return false; event.preventDefault();" name="abc">
+                        <div class="Left_tt" style="flex:1">
+
+                            <label class="label_name label_name_kh" for="usr">Tên khách hàng:</label>
+                            <input type="text" class="form-control" id="username" name="ten" value="@ViewBag.Ten">
+                            <p id="error-name"></p>
+                            <label class="label_name" for="usr">Số điện thoại:</label>
+                            <input type="text" class="form-control" id="Phone" name="sdt" value="@ViewBag.sdt">
+                            <p id="error-phone"></p>
+                            <label class="label_name" for="usr">Email:</label>
+                            <input type="text" class="form-control" id="Email" name="email" value="@ViewBag.email">
+                            <p id="error-email"></p>
+                            <label class="label_name" for="usr">Địa chỉ cụ thể:</label>
+                            <input type="text" class="form-control" id="Adress" name="dc" value="@ViewBag.dc">
+                            <p id="error-adress"></p>
+                            <div>
+                                <input class="btn btn-primary pay_tt" type="submit" name="buyall" id="buyall" value="Thanh toán" />
+                            </div>
+                        </div>
+                        <div class="Right_tt" style="flex:1">
+
+                            @*<label class="label_name" for="usr">Tỉnh/Thành phố:</label>
+                            <input type="text" class="form-control" id="Adress" name="dc" value="@ViewBag.dc">
+                            <p id="error-adress"></p>
+
+                            <label class="label_name" for="usr">Quận/Huyện:</label>
+                            <input type="text" class="form-control" id="Adress" name="dc" value="@ViewBag.dc">
+                            <p id="error-adress"></p>
+
+                            <label class="label_name" for="usr">Xã/Phường/Thị trấn:</label>
+                            <input type="text" class="form-control" id="Adress" name="dc">
+                            <p id="error-email"></p>*@
+
+
+                            <input type="hidden" name="tong" value="@money" />
+                        </div>
+                    </form>
+
+                </div>
+
+                <script>
+                    function send(e) {
+                        var a = true;
+                        var username = document.getElementById('username').value;
+                        var Adress = document.getElementById('Adress').value;
+                        var Phone = document.getElementById('Phone').value;
+                        var Email = document.getElementById('Email').value;
+
+                        // Name
+                        
+                        if (username.trim().length <= 0) {
+                            document.getElementById('error-name').innerHTML = 'Hãy điền tên của bạn!';
+                            e.preventDefault();
+                            a = false;
+                        } else {
+                            document.getElementById('error-name').innerHTML = '';
+                        }
+
+                        // Adress
+                        if (Adress.trim().length <= 0) {
+                            document.getElementById('error-adress').innerHTML = 'Hãy điền địa chỉ của bạn!';
+                            e.preventDefault();
+                            a = false;
+
+                        } else {
+                            document.getElementById('error-adress').innerHTML = '';
+                        }
+
+                        // Phone
+                        if (Phone.trim().length <= 0) {
+                            document.getElementById('error-phone').innerHTML = 'Hãy nhập số điện thoại của bạn!';
+                            e.preventDefault();
+                            a = false;
+                        } else {
+                            document.getElementById('error-phone').innerHTML = '';
+
+                            }
+
+                         // Email
+                        if (Email.trim().length <= 0) {
+                        document.getElementById('error-email').innerHTML = 'Hãy nhập email của bạn!';
+                        e.preventDefault();
+                        a = false;
+                        } else {
+                            document.getElementById('error-email').innerHTML = '';
+
+                        }
+                        return a;
+                    }
+                </script>
+
+            </div>
+        }
+
+        <div id="Online" class="tabcontent">
+            <div style="margin-bottom: 10px;">
+
+                @foreach (var item in Model.TTs)
+                {
+                    if (item.MaThe != 7)
+                    {
+                        <button class="btn-success img_btn" id="@item.MaThe" style="margin-right: 4px;"><img id="img" class="cart_pay_img" src="@Url.Content("~/Assets/images/" + item.Anh)"></button>
+                    }
+                }
+
+            </div>
+            @using (Html.BeginForm("Online", "TTnGH", FormMethod.Post))
+            {
+                <div class="container-fluid">
+                    <div style=" padding-bottom: 40px;">
+                        <label class="label_name" for="usr">Tên khách hàng:</label>
+                        <input type="text" class="form-control" id="user username" name="ten" value="@ViewBag.Ten">
+                        <label class="label_name" for="usr">Số điện thoại khách hàng:</label>
+                        <input type="text" class="form-control" id="user username" name="std" value="@ViewBag.sdt">
+                        <label class="label_name" for="usr">Địa chỉ:</label>
+                        <input type="text" class="form-control" id="user username" name="dc" value="@ViewBag.dc">
+                        <input class="btn btn-primary pay_tt" type="submit" name="buyall" id="buyall tt" value="Thanh toán" />
+                        <input type="hidden" name="tong" value="@money" />
+                        <input type="hidden" name="the" id="the" value="0" />
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+

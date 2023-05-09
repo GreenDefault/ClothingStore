@@ -1,0 +1,82 @@
+﻿@{ Layout = null;}
+
+<html>
+<head>
+    <title>Đăng ký</title>
+    <style>
+        /* Đăng ký */
+
+        .lg1 {
+            background: url(../Assets/images/background.jpg) no-repeat;
+            background-size: cover;
+            margin-top: 40px;
+        }
+
+        .login1 {
+            margin: auto;
+            width: 700px;
+            height: 570px;
+            padding-top: 40px;
+            background-color: white;
+        }
+
+        .text_DK {
+            margin: auto;
+            text-align: center;
+            padding-bottom: 30px;
+        }
+
+        a.return_login {
+            color: white;
+            padding-top: 10px;
+        }
+
+            a.return_login:hover {
+                text-decoration: none;
+                color: white;
+            }
+
+        .return_login a:hover {
+            text-decoration: none;
+        }
+
+        button.btn.btn-primary.Btn_Login1 {
+            margin: 7px 42px;
+            width: 245px;
+            background-image: linear-gradient(to right, rgb(100, 160, 230), rgb(70, 106, 226),rgb(175, 25, 235),rgb(255, 0, 221));
+            color: white;
+            border: none;
+            height: 40px;
+        }
+
+        .DK {
+            background-image: linear-gradient(to right, rgb(100, 160, 230), rgb(70, 106, 226),rgb(175, 25, 235),rgb(255, 0, 221));
+            color: white;
+            height: 37px;
+            text-align: center;
+            border: none;
+            margin-bottom: 5px;
+        }
+
+        .return_Login {
+            margin-top: 19px;
+            font-size: 17px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="lg1">
+    <div class="login2">
+        <h2 class="text_DK">Registration</h2>
+        <input class="form-control username" type="password" placeholder="Tên người dùng">
+        <input class="form-control username" type="password" placeholder="Số điện thoại">
+        <input class="form-control username" type="text" placeholder="Tên đăng nhập">
+        <input class="form-control username" type="password" placeholder="Mật khẩu">
+        <input class="form-control username" type="password" placeholder="Nhập lại mật khẩu">
+        <button class="btn btn-primary Btn_Login1" type="submit" value="Đăng nhập">Đăng Ký</button>
+        <div class="dangkyngay return_Login"><a href="./Login.html">Quay lại trang đăng nhập</a> </div>
+    </div>
+
+</body>
+</html>
+

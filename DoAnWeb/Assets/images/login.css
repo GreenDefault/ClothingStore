@@ -1,0 +1,135 @@
+/* Đăng nhập */
+.lg{
+    background: url(./background.jpg) no-repeat;
+    background-size: cover;
+    margin-top: 70px;
+}
+.login1{
+    margin: auto;
+    width: 330px;
+    height: 520px;
+    padding-top:50px;
+    background-color: white;
+}
+
+.text_DN{
+    margin: auto;
+    text-align: center;
+    padding-bottom: 45px;
+}
+button.username.DN {
+    margin-top: 4px;
+}
+
+input.form-control.username {
+    width: 246px;
+}
+
+ .username{
+    width: 245px;
+    height: 35px;
+    margin: 25px 42px;
+}
+
+button.btn.btn-primary.Btn_Login {
+    border: none;
+    height: 40px;
+    margin: 0px 42px;
+    width: 245px;
+    background-image: linear-gradient(to right, rgb(100, 160, 230), rgb(70, 106, 226),rgb(175, 25, 235),rgb(255, 0, 221));
+    color: white;
+}
+#or{
+    margin: 15px 145px;
+}
+.fb{
+    padding-top: 0px;
+    text-align: center;
+
+}
+.or{
+    background-color: rgb(130, 150, 238);
+    color: rgb(255, 255, 255);
+    width: 120px;
+    height: 37px;
+    border: none;
+}
+.or a{
+    text-decoration: none;
+    color: white;
+}
+.or a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+#registration_now{
+    display: inline-flex;
+    margin-left: 42px;
+    padding: 45px 0px;
+}
+.dangkyngay{
+    font-size: 0.9rem;
+}
+.dangkyngay1{
+    margin-left: 5px;
+}
+#registration_now a:hover{
+    text-decoration: none;
+}
+
+    /* Đăng ký */ 
+
+.lg1{
+    background: url(./background.jpg) no-repeat;
+    background-size: cover;
+    margin-top: 40px;
+}
+.login2{
+    margin: auto;
+    width: 330px;
+    height: 570px;
+    padding-top:40px;
+    background-color: white;
+}
+.text_DK{
+    margin: auto;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+a.return_login {
+    color: white;
+    padding-top: 10px;
+}
+
+a.return_login:hover {
+    text-decoration: none;
+    color: white;
+}
+.return_login a:hover{
+    text-decoration: none;
+}
+button.btn.btn-primary.Btn_Login1 {
+    margin: 7px 42px;
+    width: 245px;
+    background-image: linear-gradient(to right, rgb(100, 160, 230), rgb(70, 106, 226),rgb(175, 25, 235),rgb(255, 0, 221));
+    color: white;
+    border: none;
+    height: 40px;
+}
+
+.DK{
+    background-image: linear-gradient(to right, rgb(100, 160, 230),  rgb(70, 106, 226),rgb(175, 25, 235),rgb(255, 0, 221));
+    color: white;
+    height: 37px;
+    text-align: center;
+    border: none;
+    margin-bottom: 5px;
+}
+
+.return_Login{
+    margin-top: 19px;
+    font-size: 17px;
+    text-align: center;
+}

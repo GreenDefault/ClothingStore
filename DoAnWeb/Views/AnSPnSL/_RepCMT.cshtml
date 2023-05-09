@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.RepCMT>
+
+@{
+    var hvc = Model.OrderByDescending(m => m.Date);
+    foreach (var item in hvc)
+    {
+        <div class="avt" style="margin-left: 100px; margin-top: -15px;">
+            <div><img id="img_avt" src="~/Assets/images/user1.png" /></div>
+            <div id="avt_user">@item.TaiKhoan.TenDN</div>
+        </div>
+        <div style="margin-left: 210px;padding-bottom:30px;">
+            <div>@item.NoiDung</div>
+            <div>Đăng vào @item.Date</div>
+        </div>
+    }
+}
+

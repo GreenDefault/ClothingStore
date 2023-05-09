@@ -1,0 +1,395 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="~/Assets/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet">
+    <script defer src="~/Assets/fontawesome-free-5.15.2-web/js/all.js"></script>
+
+    <link rel="stylesheet" href="~/Assets/header.css">
+    <style>
+        .text__img {
+            position: absolute;
+            margin: 255px 180px;
+            font-size: 50px;
+            color: rgb(246, 246, 248);
+        }
+
+        /* footer */
+        footer.footer {
+            height: auto;
+            background: #5b7eff;
+            color: white;
+            text-align: center;
+            margin-top: 0px;
+            padding-top: 30px;
+            display: flex;
+        }
+
+        .last {
+            flex: 2;
+            margin-bottom: 35px;
+        }
+
+        .ft_link {
+            flex: 1;
+        }
+
+        span {
+            font-size: 20px;
+            border-bottom: 2px solid white;
+            padding-bottom: 10px;
+        }
+
+        a.user_login1 {
+            padding: 0px 33px;
+        }
+
+        .c {
+            margin-top: 7px;
+            margin-bottom: 0px;
+            margin-left: 88px;
+            text-align: left;
+        }
+
+        .a {
+            margin-top: 7px;
+            margin-bottom: 0px;
+            margin-left: 105px;
+            text-align: left;
+        }
+
+        .b {
+            margin-top: 7px;
+            margin-bottom: 0px;
+            margin-left: 77px;
+            text-align: left;
+        }
+
+        .logo {
+            margin-top: -8px;
+            width: 203px;
+            height: 58px;
+        }
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+        }
+
+        /* Nav */
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            background: rgb(87 100 255 / 90%);
+            position: fixed;
+            width: 100%;
+            z-index: 10000000;
+            height: 65px;
+        }
+
+
+
+        #logo {
+            font-size: 35px;
+            padding-bottom: 15px;
+            border: none;
+        }
+
+        ul {
+            display: flex;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .menu-li {
+            font-size: 16px;
+            margin-top: 22px;
+        }
+            .menu-li.active {
+               color: red;
+            }    
+            a {
+                color: white;
+                margin: 10px 0px;
+                padding: 15px 17px;
+            }
+
+            a:hover {
+                color: lightgray;
+                text-decoration: none;
+            }
+
+        input#search {
+            margin-top: 26px;
+            width: 390px;
+            height: 30px;
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: black;
+        }
+        .box_search {
+            background-color: #fff;
+            border-radius: 30px;
+            width: 478px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            margin: 4px 100px;
+        }
+
+        .li-search {
+            margin-top: 11px;
+        }
+
+        #btn-menu {
+            display: none;
+        }
+
+        /* header_textnav */
+
+        .header_textnav {
+            color: white;
+            width: 700px;
+            height: 50px;
+            padding: 280px 80px;
+        }
+
+        h3.Text_Nav {
+            font-size: 40px;
+            text-transform: capitalize;
+        }
+
+        .Text_Nav {
+            color: white;
+        }
+
+        .user_login {
+            position: absolute;
+            display: none;
+            width: 220px;
+            height: 110px;
+            background: #5b7eff;
+            margin: 10px 20px;
+        }
+
+        .btn_login {
+            margin: 18px 5px;
+        }
+
+        .menu-li:hover .user_login {
+            display: block;
+        }
+
+        .row.row_product {
+            margin: 20px 25px;
+        }
+
+        .btn_login a {
+            font-size: 15px;
+        }
+
+
+        element.style {
+        }
+
+        #btnsearch {
+            border: none;
+            background: white;
+            width: 25px;
+            height: 25px;
+            margin-top: 29px;
+        }
+
+        form#mg3 {
+            display: flex;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('input#search').keyup(function (event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    $('form#mg3').submit();
+                }
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <!--Header-->
+
+    <div class="header">
+
+        <!--Nav-->
+
+        <div class="nav">
+            <div class="logo">
+                <a href="~/Home/Index">
+                    <i style="font-family:'Colonna MT';font-size:55px; color:white;">DN</i> <i style="font-family:'VNI 24 Love';font-size:40px; color:white;">Shop</i>
+                </a>
+            </div>
+
+            <div id="nav">
+                <button type="button" id="btn-menu">Menu</button>
+                <ul class="menu">
+
+                    <li class="menu-li li-search">
+                        <div class="box_search">
+                            @using (Html.BeginForm("Index", "AnSPnSL", FormMethod.Post, new { id = "mg3" }))
+                            {
+                                <input id="search" type="text" name="KeyWord" placeholder="Tìm kiếm...">
+                                <button onclick="search()" id="btnsearch" name="Name" type="submit"><i style="padding-right:7px; color: rgb(255, 0, 200); font-size: 24px;" class="fa fa-search"></i></button>
+                            }
+                        </div>
+                        <script>
+                            function search() {
+                                document.getElementById("btnsearch").style.border = "none";
+                                $('form#mg3').submit();
+                            }
+                        </script>
+                    </li>
+
+                    <li class="menu-li active" onclick="click('main_product',this)">
+                        @Html.ActionLink("Sản phẩm", "Index", "AnSPnSL", null, new { @class = "menu-item menu-product" })
+                    </li>
+
+                    <li class="menu-li" onclick="click('login',this)">
+                        @if (Session["tennd"] != null)
+                        {
+                            <a class="user_login1" href="@Url.Action("History", "GioHangKHs")">@Session["tennd"]</a>
+                            <div class="user_login">
+                                <div class="btn_login">  @Html.ActionLink("Hồ sơ khách hàng", "History", "GioHangKHs", null, new { @class = "menu-item menu-product" })</div>
+                                <div class="btn_login">  @Html.ActionLink("Đăng xuất", "LogOut", "Login", null, new { @class = "menu-item menu-product" })</div>
+                            </div>
+                        }
+                        else
+                        {
+                            string rrr = Request.Url.AbsoluteUri;
+                            if(Request.Headers["X-Forwarded-Proto"] != null)
+                            {
+                                rrr = rrr.Insert(4, Request.Headers["X-Forwarded-Proto"]);
+                            }
+                            @Html.ActionLink("Tài khoản", "Index", "Login", new { returnurl = rrr }, new { @class = "menu-item menu-product" })
+                            <div class="user_login">
+                                <div class="btn_login">  @Html.ActionLink("Đăng nhập", "Index", "Login", new { returnurl = rrr }, new { @class = "menu-item menu-product" })</div>
+                                <div class="btn_login">  @Html.ActionLink("Đăng ký", "DangKy", "DangKy", null, new { @class = "btn_login_bottom" })</div>
+                            </div>
+                        }
+                    </li>
+
+                    <li class="menu-li" onclick="click('shopping-cart',this)"> @Html.ActionLink("Giỏ hàng", "Index", "GioHangKHs", null, null)</li>
+
+
+                </ul>
+                <script>
+                    function click(type, element) {
+                        let li = document.getElementsByClassName('menu-li');
+                        for (i = 0; i < li.length; i++) {
+                            li[i].style.background = 'blue';
+                        }
+                        element.style.background = 'red';
+
+                    }
+                </script>
+            </div>
+        </div>
+
+    </div>
+
+    @RenderBody()
+    <!--Footer-->
+
+<footer class="footer">
+
+    <div class="ft_link">
+        <span>Sản phẩm</span>
+
+        <p class="c" style="margin-top: 40px;">Thời trang công sở</p>
+        <p class="c">Thời trang trẻ em</p>
+        <p class="c">Thời trang nam</p>
+        <p class="c">Thời trang nhà</p>
+        <p class="c">Thời trang nữ</p>
+    </div>
+
+    <div class="ft_link">
+        <span>Hỗ trợ</span>
+
+        <p class="a" style="margin-top: 40px;">Thanh toán</p>
+        <p class="a">Tài khoản</p>
+        <p class="a">Mua hàng</p>
+    </div>
+
+    <div class="ft_link">
+        <span>Tài khoản</span>
+
+        <p class="c" style="margin-top: 40px;">Hướng dẫn</p>
+        <p class="c">Facebook</p>
+        <p class="c">Intagram</p>
+        <p class="c">Đăng ký</p>
+        <p class="c">Đăng xuất</p>
+    </div>
+
+    <div class="last">
+        <span style="margin-left:-318px;">Liên hệ</span>
+
+        <p class="b" style="margin-top: 40px;">234 Hoàng Quốc Việt, Cổ Nhuế, Bắc Từ Liêm, Hà Nội</p>
+        <p class="b">NguyenTheNinh2000@gmail.com</p>
+        <p class="b">VuDucVinh2000@gmail.com</p>
+        <p class="b">VuVanDong2000@gmail.com</p>
+        <p class="b">0357872271</p>
+        <p class="b">Facebook</p>
+        <p class="b">Intagram</p>
+    </div>
+
+    <!-- Messenger Plugin chat Code -->
+    <div id="fb-root"></div>
+
+    <!-- Your Plugin chat code -->
+    <div id="fb-customer-chat" class="fb-customerchat">
+    </div>
+
+    <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "109670238122936");
+        chatbox.setAttribute("attribution", "biz_inbox");
+
+        window.fbAsyncInit = function () {
+            FB.init({
+                xfbml: true,
+                version: 'v12.0'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+</footer>
+
+
+</body>
+</html>
+

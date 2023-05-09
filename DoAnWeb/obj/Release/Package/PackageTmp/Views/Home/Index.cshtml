@@ -1,0 +1,283 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<html>
+<head>
+    <link href="~/Assets/fontawesome-free-5.15.2-web/css/all.min.css" />
+    <link href="~/Assets/fontawesome-free-5.15.2-web/js/all.js" />
+
+    <link href="~/Assets/fontawesome-free-5.15.2-web/css/all.css" rel="stylesheet">
+    <script defer src="~/Assets/fontawesome-free-5.15.2-web/js/all.js"></script>
+
+
+    <style>
+
+        body {
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: white;
+        }
+
+        .main_home {
+            height: auto;
+            width: 100%;
+            display: flex;
+            margin-bottom: 50px;
+        }
+
+        #img_left {
+            width: 530px;
+            height: 300px;
+            flex: 1;
+            border: 1px solid rgb(255, 207, 248);
+        }
+
+        #img_right {
+            width: 530px;
+            height: 300px;
+            margin-left: 20px;
+            flex: 1;
+            border: 1px solid rgb(255, 207, 248);
+        }
+
+        .profile {
+            display: flex;
+            padding: 40px 110px;
+            background-color: white;
+            margin-bottom: 20px;
+        }
+
+        .name_admin {
+            flex: 1;
+            max-width: 360px;
+            background-color: white;
+            color: white;
+            text-align: center;
+            height: 560px;
+            margin: 10px 10px;
+            border-radius: 7px;
+            border: 2px solid white;
+        }
+
+        h2 {
+            margin-bottom:50px;
+        }
+
+        .sp {
+            display: flex;
+            margin:120px 80px;
+        }
+
+        .img_header {
+            height: 800px;
+            background: url(../Assets/images/50.jpg);
+            background-size: cover;
+            margin-bottom: 50px;
+        }
+        #text_img {
+            padding: 220px 80px 0px 75px;
+            color: white;
+            font-size: 50px;
+            font-family: .VnMonotype corsiva;
+        }
+        #text_img1 {
+            padding: 0px 80px;
+            color: white;
+            font-size: 37px;
+            font-family: .VnPresent;
+        }
+
+        .abc {
+            color: white;
+            font-size:17px;
+            height:45px;
+            width: 200px;
+            border: 1px solid #ff03b2;
+            border-radius: 5px;
+            background-color: #ff03b2;
+            margin-left: 85px;
+        }
+        .abc:hover{
+            color: lightgray;
+        }
+
+        #contend {
+            padding: 0px 80px;
+            color: white;
+            font-size: 20px;
+            width: 700px;
+            font-family: .VnPresent;
+        }
+
+        .main {
+            display: flex;
+            margin-left: 20px;
+            margin-top: 80px;
+        }
+
+        .img_main{
+            flex:1;
+        }
+
+        #img_top {
+            height: 285px;
+            width: 95%;
+        }
+
+        span::first-letter{
+            color:lawngreen;
+        }
+
+        .img_product {
+            flex: 5;
+            overflow: hidden;
+            width: 85%;
+        }
+
+        .images{
+            height:435px;
+        }
+
+        .hot{
+            flex:6;
+        }
+
+        p {
+            width: 85%;
+            font-size: 17px;
+            text-align: justify;
+        }
+
+        a.btn.btn-primary {
+            margin-left: 80px;
+            height: 45px;
+            width: 180px;
+        }
+
+        #img1 {
+            background: url(../Assets/images/anhdep.jpg);
+            height: 470px;
+            width: 690px;
+            background-size: cover;
+        }
+
+        #img2 {
+            background: url(../../Assets/images/img.jpg);
+            height: 470px;
+            width: 690px;
+            background-size: cover;
+        }
+
+        h1 {
+            color: red;
+            text-align: center;
+            margin-top: 80px;
+            font-size: 40px;
+        }
+
+        .nd {
+            color: white;
+            text-align: justify;
+            width: 500px;
+            margin-left: 90px;
+            margin-top: 40px;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <!--Product-->
+    <div class="img_header">
+        <p id="text_img">Thời trang</p>
+        <p id="text_img1">Phong cách & Cuộc sống</p>
+        <p id="contend">
+            Luôn cập nhật và cung cấp các sản phẩm thời trang theo xu hướng mang đến cho khách hàng nhiều trải nghiệm và sản phẩm mới nhất
+            sản phẩm đa dạng về mẫu mã và nhiều sự lựa chọn
+        </p>
+        <div style="margin-top:40px;"><a href="@Url.Action("Index", "AnSPnSL")" class="btn btn-primary" >Xem sản phẩm <i class="fas fa-angle-double-right"></i></a></div>
+    </div>
+    <div class="main">
+
+        <div class="img_main"><img id="img_top" src="~/Assets/images/a2.jpg" /></div>
+        <div class="img_main"><img id="img_top" src="~/Assets/images/a1.jpg" /></div>
+        <div class="img_main"><img id="img_top" src="~/Assets/images/10.jpg" /></div>
+    </div>
+
+    <div class="sp">
+
+        <div class="img_product">
+            <h2>Thời trang mới</h2>
+            <p>
+                Luôn cập nhật và cung cấp các sản phẩm thời trang theo xu hướng, đầy đủ quần, áo, váy,...với những chất liệu tốt đến từ các thương hiệu lớn nhằm mục đích mang đến cho khách hàng nhiều trải nghiệm và sản phẩm mới nhất
+                sản phẩm đa dạng về mẫu mã và nhiều sự lựa chọn.
+            </p>
+
+            <div style="margin-top:40px;"><a href="@Url.Action("Index", "AnSPnSL", new { baka = 1})" style="margin-left:0px;" class="btn btn-primary">Xem sản phẩm <i class="fas fa-angle-double-right"></i></a></div>
+        </div>
+
+        <div class="img_product hot">
+            <img class="images" src="~/Assets/images/acb.jpg" />
+        </div>
+
+    </div>
+
+    <div class="sp">
+
+        <div class="img_product hot">
+            <img class="images" src="~/Assets/images/img.jpg" />
+        </div>
+
+        <div class="img_product">
+            <h2 style="text-align:right;">Thời trang hot</h2>
+            <p style="margin-left:80px;">
+                Luôn cập nhật và cung cấp các sản phẩm thời trang theo xu hướng, đầy đủ quần, áo, váy,...với những chất liệu tốt đến từ các thương hiệu lớn nhằm mục đích mang đến cho khách hàng nhiều trải nghiệm và sản phẩm mới nhất
+                sản phẩm đa dạng về mẫu mã và nhiều sự lựa chọn.
+            </p>
+
+            <div style="margin-top:40px;text-align:right"><a href="@Url.Action("Index", "AnSPnSL", new { baka = 2})" class="btn btn-primary">Xem sản phẩm <i class="fas fa-angle-double-right"></i></a></div>
+        </div>
+
+    </div>
+
+    <div class="sp">
+
+        <div class="img_product">
+            <h2>Thời trang nam</h2>
+            <p>
+                Luôn cập nhật và cung cấp các sản phẩm thời trang theo xu hướng, đầy đủ quần, áo, váy,...với những chất liệu tốt đến từ các thương hiệu lớn nhằm mục đích mang đến cho khách hàng nhiều trải nghiệm và sản phẩm mới nhất
+                sản phẩm đa dạng về mẫu mã và nhiều sự lựa chọn.
+            </p>
+
+            <div style="margin-top:40px;"><a href="@Url.Action("Index", "AnSPnSL", new { baka = 3})" style="margin-left:0px;" class="btn btn-primary">Xem sản phẩm <i class="fas fa-angle-double-right"></i></a></div>
+        </div>
+
+        <div class="img_product hot">
+            <img class="images" src="~/Assets/images/anhdep.jpg" />
+        </div>
+
+    </div>
+
+    <div class="sp">
+
+        <div class="img_product hot">
+            <img class="images" src="~/Assets/images/img1.jpg" />
+        </div>
+
+        <div class="img_product">
+            <h2 style="text-align:right;">Thời trang nữ</h2>
+            <p style="margin-left:80px;">
+                Luôn cập nhật và cung cấp các sản phẩm thời trang theo xu hướng, đầy đủ quần, áo, váy,...với những chất liệu tốt đến từ các thương hiệu lớn nhằm mục đích mang đến cho khách hàng nhiều trải nghiệm và sản phẩm mới nhất
+                sản phẩm đa dạng về mẫu mã và nhiều sự lựa chọn.
+            </p>
+
+            <div style="margin-top:40px;text-align:right"><a href="@Url.Action("Index", "AnSPnSL", new { baka = 4})" class="btn btn-primary">Xem sản phẩm <i class="fas fa-angle-double-right"></i></a></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+

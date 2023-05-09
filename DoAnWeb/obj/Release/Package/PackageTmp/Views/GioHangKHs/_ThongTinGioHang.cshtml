@@ -1,0 +1,101 @@
+﻿@model ICollection<DoAnWeb.ViewModels.onlyreason>
+
+@{ long money = 0;
+    int idd = 1;}
+<div class="shopping-cart-text"><span style="font-size:28px;">Giỏ Hàng Của Bạn</span></div>
+@using (Html.BeginForm("buyall", "GioHangKHs", FormMethod.Post))
+{
+    <table class="table table-hover">
+        <thead>
+            <tr class="sp">
+                <td class="sp1"></td>
+                <td class="sp1">Sản phẩm</td>
+                <td class="sp1">Tên sản phẩm</td>
+                <td class="sp1">Màu</td>
+                <td class="sp1">Size</td>
+                <td class="sp1">Đơn giá</td>
+                <td class="sp1">Số lượng</td>
+                <td class="sp1">Thành tiền</td>
+                <td class="sp1"></td>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                var lll = item.gh.ThanhTien.ToString();
+                var dong = item.gh.ThanhTien.ToString();
+                int sara = dong.Length;
+                int vinh = 0;
+                int thuong = 0;
+                sara = sara % 3;
+                if (sara == 0)
+                {
+                    vinh++;
+
+                    foreach (var c in dong)
+                    {
+                        if (vinh % 3 == sara && vinh != dong.Length - 1)
+                        {
+                            dong = dong.Insert(vinh + thuong, ".");
+                            thuong++;
+                        }
+                        vinh++;
+                    }
+
+                }
+                else
+                {
+                    foreach (var c in dong)
+                    {
+                        if (vinh % 3 == sara)
+                        {
+                            dong = dong.Insert(vinh + thuong, ".");
+                            thuong++;
+                        }
+                        vinh++;
+                    }
+                }
+                money = money + long.Parse(item.gh.ThanhTien.ToString());
+
+                <tr>
+                    <td><div><input class="checking" onchange="checking(this)" style="width:50px; font-size:20px;height:24px;" type="checkbox" name="ckb @idd" /></div></td>
+                    <td><div style="margin-top:8px;"><img src="@Url.Content("~/Assets/images/" + item.anh)" class="shopping-cart-img"></div></td>
+                    <td><div class="text_sh abc">@Html.DisplayFor(modelItem => item.gh.SanPham.TenSP)</div></td>
+                    <td> <div class="text_sh">@Html.DisplayFor(modelItem => item.gh.Mau.TenMau)</div></td>
+                    <td> <div class="text_sh">@Html.DisplayFor(modelItem => item.gh.Size.TenSize)</div></td>
+                    <td id="dongia"> <div class="text_sh" value="@item.gh.SanPham.DonGia">@Html.DisplayFor(modelItem => item.gh.SanPham.DonGia) VND</div></td>
+                    <td><input type="number" min="0" id="@item.gh.MaSP" onkeyup="help(this)" name="@item.gh.MaMau @item.gh.MaSize @item.gh.MaSP" max="@item.gh.SanPham.SoLuongs.Where(m=>m.MaSP == item.gh.MaSP).Where(m=>m.MaMau==item.gh.MaMau).Where(m=>m.MaSize == item.gh.MaSize).First().SoLuong1" value="@item.gh.SoLuong" oninput="validity.valid||(value='');" /></td>
+                    <td id="thanhtien"><div class="text_sh" value="@lll">@dong VND</div></td>
+                    <td><div class="text_sh"><a style="color:red" href="#" onclick="xoahd(@item.gh.MaSP, @item.gh.MaSize, @item.gh.MaMau)">Xóa</a></div></td>
+                </tr>
+                idd++;
+            }
+
+        </tbody>
+
+    </table>
+    <hr />
+    <div class="total">
+        <input style="height:24px;margin-left: 8px;" type="checkbox" name="ckb 0" onclick="toggle(this)" /> <span style="color:red;margin-top:38px;font-size:18px;margin-left:27px;">Chọn tất cả</span>
+        @{ var realmoney = money.ToString();
+            int tt = realmoney.Length;
+            int count = 0;
+            int yeuThay = 0;
+            tt = tt % 3;
+            foreach (var c in realmoney)
+            {
+                if (count % 3 == tt)
+                {
+                    realmoney = realmoney.Insert(count + yeuThay, ".");
+                    yeuThay++;
+                }
+                count++;
+            }
+        }
+
+        <b id="tien">Tổng tiền: 0 VND</b>
+        <input class="btn btn-primary pay_tt" type="submit" name="buyall" id="buyall" value="Thanh toán" />
+    </div>
+    <input type="hidden" name="all" value="@idd" />
+}

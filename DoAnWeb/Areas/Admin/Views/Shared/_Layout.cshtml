@@ -1,0 +1,171 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="~/Assets/NewFolder1/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="~/Assets/NewFolder1/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="~/Assets/fontawesome-free-5.15.2-web/css/all.min.css">
+    <link rel="stylesheet" href="~/Assets/fontawesome-free-5.15.2-web/js/all.js">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="~/Assets/NewFolder1//css/demo/style.css">
+    <!-- End layout styles -->
+    <link rel="shortcut icon" href="~/Assets/NewFolder1//images/favicon.png" />
+    <style>
+        .mdc-drawer--dismissible.mdc-drawer--open {
+            display: flex;
+            width: 290px;
+        }
+
+        .mdc-top-app-bar__section.mdc-top-app-bar__section--align-start {
+            margin-left: 70px;
+            margin-top: 45px;
+        }
+        
+        .mdc-top-app-bar .mdc-top-app-bar__section .mdc-text-field--with-leading-icon.search-text-field {
+            height: 37px;
+            width: 420px;
+            border-radius: 40px;
+            margin-left: 195px;
+            box-shadow: 0 0 10px 5px rgb(211 211 211 / 50%);
+        }
+
+        .mdc-top-app-bar .mdc-top-app-bar__section .mdc-top-app-bar__title {
+            font-weight: 400;
+            margin-right: 36px;
+            font-size: 27px;
+        }
+
+        button.material-icons.mdc-top-app-bar__navigation-icon.mdc-icon-button.sidebar-toggler {
+            font-size: 37px;
+            padding: 0px;
+        }
+
+        .mdc-list-group .mdc-list {
+            padding: 0;
+            margin-top: 45px;
+        }
+
+    </style>
+</head>
+<body>
+    <script src="~/Assets/NewFolder1/js/preloader.js"></script>
+    <div class="body-wrapper">
+        <!-- partial:../../partials/_sidebar.html -->
+        <aside class="mdc-drawer mdc-drawer--dismissible mdc-drawer--open">
+
+            <div class="mdc-drawer__content">
+
+                <div class="mdc-list-group">
+                    <nav class="mdc-list mdc-drawer-menu">
+
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "SanPhams")">
+                                <i class="fas fa-bars" aria-hidden="true" style="margin-right:20px;"></i>
+                                Sản phẩm
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "ThuongHieux")">
+                                <i class="fab fa-asymmetrik" style="margin-right:17px;"></i>
+                                Thương hiệu
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "NCCs")">
+                                <i class="fas fa-truck-moving" style="margin-right:17px;"></i>
+                                Nhà cung cấp
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "HoaDons")">
+                                <i class="fas fa-scroll" style="margin-right:17px;"></i>
+                                Đơn hàng
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "ChatLieux")">
+                                <i class="fab fa-artstation" style="margin-right:20px;"></i>
+                                Chất liệu
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "LoaiSPs")">
+                                <i class="fab fa-buysellads" style="margin-right:22px;"></i>
+                                Loại sản phẩm
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "Maus")">
+                                <i class="fas fa-paint-brush" style="margin-right:20px;"></i>
+                                Màu
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "ThanhToanOnlines")">
+                                <i class="fab fa-cc-visa" style="margin-right:18px;"></i>
+                                Thẻ ngân hàng
+                            </a>
+                        </div>
+                        <div class="mdc-list-item mdc-drawer-item">
+                            <a class="mdc-drawer-link" href="@Url.Action("Index", "Thongke")">
+                                <i class="fab fa-pinterest-square" style="margin-right:20px;"></i>
+                                Thống kê doanh thu
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+                <div class="profile-actions">
+                    <a href="@Url.Action("LogoutAd", "LoginAdmin")">Đăng xuất</a>
+                </div>
+            </div>
+        </aside>
+        <!-- partial -->
+        <div class="main-wrapper mdc-drawer-app-content">
+            <!-- partial:../../partials/_navbar.html -->
+            <header class="mdc-top-app-bar">
+                <div class="mdc-top-app-bar__row">
+                    <div class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                        <button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button sidebar-toggler">menu</button>
+                        <span class="mdc-top-app-bar__title">Quản lý Admin</span>
+                        <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon search-text-field d-none d-md-flex">
+                            <i class="material-icons mdc-text-field__icon"></i>
+                            <input class="mdc-text-field__input" id="text-field-hero-input">
+                            <div class="mdc-notched-outline">
+                                <div class="mdc-notched-outline__leading"></div>
+                                <div class="mdc-notched-outline__notch">
+                                    <label for="text-field-hero-input" class="mdc-floating-label">Tìm kiếm...</label>
+                                </div>
+                                <div class="mdc-notched-outline__trailing"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- partial -->
+            <div class="page-wrapper mdc-toolbar-fixed-adjust">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <!-- plugins:js -->
+    <script src="~/Assets/NewFolder1/vendors/js/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <script src="~/Assets/NewFolder1/vendors/chartjs/Chart.min.js"></script>
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="~/Assets/NewFolder1/js/material.js"></script>
+    <script src="~/Assets/NewFolder1/js/misc.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <script src="~/Assets/NewFolder1/js/chartjs.js"></script>
+    <!-- End custom js for this page-->
+</body>
+</html>

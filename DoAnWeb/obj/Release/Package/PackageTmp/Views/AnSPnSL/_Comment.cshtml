@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.Comment>
+
+<script>
+    function repcmt(abc) {
+        var b = $(abc).parent();
+        var trash = document.querySelectorAll('form#ddd');
+        for (var i = 0; i < trash.length; i++) {
+            trash[i].remove();
+        }
+        @if (Session["user_name"] == null)
+        {
+            string c = "var rrr = \"<form id='ddd' style='margin-left: 54px;'><textarea placeholder='Vui lòng đăng nhập trước khi bình luận' id='RepCMT' name='RepCMT'></textarea><button type='button' id='DangRepCMT' disabled>Đăng</button></form>\";";
+            @Html.Raw(c);
+         }
+        else
+        {
+            string c = "var rrr = \"<form id='ddd' style='margin-left: 54px;'><textarea placeholder='Nội dung bình luận...' id='RepCMT' name='RepCMT'></textarea><button type='button' onclick='crepcmt(this)' id='DangRepCMT' data-sub=\"+ $(abc).data('sub')+ \" >Đăng</button></form>\";";
+            @Html.Raw(c);
+        }
+        b.append(rrr);
+        console.log($(abc).data('sub'));
+    }
+
+</script>
+
+@foreach (var item in Model)
+{
+    <div>
+        <div class="avt">
+            <div><img id="img_avt" src="@Url.Content("~/Assets/images/" + item.TaiKhoan.Anh)" /></div>
+            <div id="avt_user">@item.TaiKhoan.TenDN</div>
+        </div>
+        <div class="repcmt">
+            <div>
+                @item.CMT
+            </div>
+            <div>
+                Đăng vào @item.Date
+            </div>
+            <div id="rep">
+                <button id="reply" onclick="repcmt(this)" data-sub="@item.MaCMT">Trả lời</button>
+            </div>
+        </div>
+            @{ Html.RenderPartial("_RepCMT", item.RepCMTs);}
+    </div>
+}

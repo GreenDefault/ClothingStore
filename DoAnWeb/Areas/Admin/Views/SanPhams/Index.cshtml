@@ -1,0 +1,142 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.SanPham>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <style>
+        .table tbody tr td {
+            padding:2px 0px;
+            font-size: 16px;
+            color: black;
+            text-align: left;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 300;
+            white-space: nowrap;
+            width: 190px;
+        }
+
+        .table thead tr th {
+            font-size: 16px;
+            color: black;
+            text-align: left;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 500;
+            white-space: nowrap;
+            width: 190px;
+            margin-bottom: 20px;
+        }
+
+        .table {
+            margin-left: 22px;
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+        }
+
+        p a {
+            margin-top: 100px;
+            margin-left: 48px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        th {
+            height: 50px;
+            text-align: left;
+        }
+        .name_product {
+            white-space: nowrap;
+            width: 120px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin-top:40px;margin-left:60px;">
+        <p>
+            @Html.ActionLink("Tạo mới", "Create", "AddSP")
+        </p>
+        <table class="table">
+            <tr>
+                <th style="text-align:left;padding-left:30px;">
+                    Tên sản phẩm
+                </th>
+                <th>
+                    Đơn giá
+                </th>
+                <th>
+                    Chất liệu
+                </th>
+                <th>
+                    Giới tính
+                </th>
+                <th>
+                    Loại sản phẩm
+                </th>
+                <th>
+                    Nhà cung cấp
+                </th>
+                <th>
+                    Thương hiệu
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <p class="name_product"> @Html.DisplayFor(modelItem => item.TenSP)</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DonGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ChatLieu.TenChatLieu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GioiTinh.GioiTinh1)
+                    </td>
+                    <td>
+                        <p class="name_product">@Html.DisplayFor(modelItem => item.LoaiSP.TenLoaiSP)</p> 
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NCC.TenNCC)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThuongHieu.TenTH)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaSP }) |
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.MaSP })
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <div class="row" style="margin-left:840px">
+            <nav aria-label="Page navigation" class="mx-auto">
+                <ul class="pagination" style="margin:20px 0">
+                    @if (@ViewBag.NumPages != null && @ViewBag.NumPages > 1)
+                    {
+                        <li class="page-item"><a class="page-link" href="Index?page=1"><<</a></li>
+                        for (int i = 1; i <= @ViewBag.NumPages; i++)
+                        {
+                            <li class="page-item"><a class="page-link" href="Index?page=@i">@i</a></li>
+                        }
+                        <li class="page-item"><a class="page-link" href="Index?page=@ViewBag.NumPages">>></a></li>
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

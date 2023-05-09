@@ -1,0 +1,243 @@
+﻿<head>
+    @{
+        var aaa = ViewBag.MaMau0;
+        var bbb = ViewBag.Size0;
+        var id = 1;
+    }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            var count = 1;
+            var sl = 1;
+            $("#add").click(function () {
+                var lastField = $("#buildyourform div:last");
+                var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+                var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\" style=\"display: flex\" />");
+                fieldWrapper.data("idx", intId);
+                var fName = $("<div class=\"1\"> <select class=\"form-control fc\" id=\"MaMau\" name=\"MaMau" + count + "\" > @foreach (var k in aaa) { var c = "<option value="+ Html.Raw(k.Value)+">" + Html.Raw(k.Text) + "</option>"; @Html.Raw(c); } </select> </div>");
+                var qName = $("@foreach (var k in bbb) { var c = "<div class=\\\"1\\\">  <input type=\\\"number\\\"  id=\\\"SoLuong\\\" name=\\\"SoLuong" + Html.Raw(k.Text) + id + "\\\" /> </div>"; id++; @Html.Raw(c) }");
+                console.log(qName.length)
+                for (var t = 0; t < qName.length; t++) {
+                    console.log(qName[t]);
+                    var rr = $(qName[t]).find('input');
+                    rr.attr('name', 'SoLuong' + sl);
+                    sl++;
+                }
+                @*var fType = $("<select class=\"fieldtype form-control\" style=\"width: 100px; height: 50px\" multiple id=\"Size\" name=\"Size" + intId + "\" >@foreach (var k in bbb) { var c = "<option value="+ Html.Raw(k.Value)+">" + Html.Raw(k.Text) + "</option>"; @Html.Raw(c); } </select > ");*@
+                var Anh = $("<div class=\"1\"> <input class=\"form-control text-box single-line\" id=\"Anh\" name=\"Anh" + count + "\" type=\"file\" value=\"\"> </div>");
+                var removeButton = $("<div class=\"1\">  <input type=\"button\" class=\"remove\" value=\"-\" /> </div>");
+                removeButton.click(function () {
+                $(this).parent().remove();
+                });
+                fieldWrapper.append(fName);
+                //fieldWrapper.append(fType);
+                fieldWrapper.append(qName);
+                fieldWrapper.append(Anh);
+                fieldWrapper.append(removeButton);
+                count++;
+            $("#buildyourform").append(fieldWrapper);
+            });
+        });
+    </script>
+</head>
+@model DoAnWeb.Areas.Admin.ViewModels.SPnSL_Admin
+
+
+@{
+    ViewBag.Title = "Create";
+}
+<h3 style="margin:34px 165px;">Tạo mới</h3>
+<html>
+<head>
+    <style>
+        .col-md-10 {
+            margin: 15px 0px;
+        }
+
+        .form-horizontal {
+            margin-left: 47px;
+        }
+        select#MaMau {
+            width: 80px;
+            height: 32px;
+        }
+        input.remove {
+            margin-top: 5px;
+        }
+        input#SoLuong {
+            height: 26px;
+            width: 64px;
+            margin-left: 41px;
+        }
+        input#Anh {
+            margin-top: 5px;
+            margin-left: 40px;
+            width: 185px;
+        }
+        .form-group {
+            font-size: 17px;
+        }
+
+        .form-control {
+            width: 820px;
+            height: 24px;
+        }
+
+        .btn btn-default {
+            width: 50px;
+            height: 24px;
+        }
+
+        input.btn.btn-default {
+            height: 35px;
+            width: 119px;
+            background: #405ffb;
+            border: none;
+            font-size: 15px;
+            color: white;
+            margin-top: 5px;
+        }
+        select#MaLoaiSP {
+            width: 830px;
+            height: 33px;
+        }
+        select#MaCL {
+            width: 830px;
+            height: 33px;
+        }
+        select#MaNCC {
+            width: 830px;
+            height: 33px;
+        }
+        select#MaTH {
+            width: 830px;
+            height: 33px;
+        }
+        select#MaGT {
+            width: 830px;
+            height: 33px;
+        }
+        .cocail{
+            width: 200px;
+            height:33px;
+        }
+        .buildyourform{
+            display:flex;
+        }
+        .1{
+            flex:1;
+            display:flex;
+        }
+        div#field1 {
+            margin: 25px 0px;
+        }
+        element.style {
+            display: flex;
+            margin-left: 15px;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm("Create", "AddSP", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div style="margin-top:40px;margin-left:120px;">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="control-label col-md-2">Tên Sản Phẩm</label>
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Sp.TenSP, new { htmlAttributes = new { @class = "form-control", name = "TenSP" } })
+                        @Html.ValidationMessageFor(model => model.Sp.TenSP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Đơn giá
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Sp.DonGia, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Sp.DonGia, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Loại sản phẩm
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Sp.MaLoaiSP, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    Chất liệu
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaCL", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Sp.MaCL, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    Nhà cung cấp
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaNCC", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Sp.MaNCC, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Thương hiệu
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Sp.MaTH, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    Giới tính
+                    <div class="col-md-10">
+                        @Html.DropDownList("MaGT", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Sp.MaGT, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div id="buildyourform">
+                    <div style="display:flex">
+                        <div>
+                            <div style="margin-bottom:20px;">Chọn Màu:<br /></div>
+                            @Html.DropDownList("MaMau0", null, htmlAttributes: new { @class = "form-control", style = "width: 81px;height:33px;" })
+                            @Html.ValidationMessageFor(model => model.Sl.MaMau, "", new { @class = "text-danger" })
+                        </div>
+                        @foreach (var k in bbb)
+                        {
+                            <div>
+                                <div style="margin-left:40px;">Size @k.Text</div><br />
+                                <input type="number" name="SoLuong@(k.Text)0" style="width: 65px; height: 27px; margin-left:40px;" />
+                            </div>
+                        }
+                        <div>
+                            <div style="margin-left:40px;">Ảnh<br /></div>
+                            @Html.EditorFor(model => model.Anh0, new { htmlAttributes = new { @class = "form-control", @type = "file" ,@style="margin-left:40px;margin-top:25px;"} })
+                        </div>
+                    </div>
+                </div>
+                <input type="button" value="Add a field" class="add" id="add" />
+                <div style="display:flex;">
+                    <div class="form-group" style="flex:1;">
+                        <div class="col-md-offset-2 col-md-10">
+
+                            <input type="submit" value="Tạo mới" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div style="flex:1;text-align:center;margin-top:30px;margin-left:400px;">
+                        @Html.ActionLink("Trở về", "Index","SanPhams")
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</body>
+</html>

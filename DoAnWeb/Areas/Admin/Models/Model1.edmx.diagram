@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d5cfe4eac87452da1464120982c2a08" Name="Diagram1">
+        <EntityTypeShape EntityType="DoAnWeb3Model.AnhSP" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.ChatLieu" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.ChucVu" Width="1.5" PointX="3.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.Comment" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.CT_HoaDon" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.GioHang" Width="1.5" PointX="6" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.GioiTinh" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.HoaDon" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.LoaiSP" Width="1.5" PointX="0.75" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.Mau" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.NCC" Width="1.5" PointX="0.75" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.RepCMT" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.SanPham" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.Size" Width="1.5" PointX="3" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.SoLuong" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.sysdiagram" Width="1.5" PointX="7.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.TaiKhoan" Width="1.5" PointX="6" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.ThanhToanOnline" Width="1.5" PointX="1.5" PointY="22.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.ThuongHieu" Width="1.5" PointX="0.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DoAnWeb3Model.TrangThai" Width="1.5" PointX="1.5" PointY="25.125" IsExpanded="true" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_AnhSP_Mau" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_AnhSP_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_CT_HoaDon_ChatLieu" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_GioHang_ChatLieu" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SanPham_ChatLieu" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_TaiKhoan_ChucVu" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_Comment_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_Comment_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_RepCMT_Comment" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_CT_HoaDon_HoaDon" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_CT_HoaDon_Mau" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_CT_HoaDon_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_CT_HoaDon_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_GioHang_Mau" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_GioHang_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_GioHang_Size" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_GioHang_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SanPham_GioiTinh" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_HoaDon_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_HoaDon_ThanhToanOnline" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_HoaDon_TrangThai" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SanPham_LoaiSP" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SoLuong_Mau" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SanPham_NCC" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_RepCMT_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SanPham_ThuongHieu" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SoLuong_SanPham" ManuallyRouted="false" />
+        <AssociationConnector Association="DoAnWeb3Model.FK_SoLuong_Size" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

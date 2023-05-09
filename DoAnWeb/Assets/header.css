@@ -1,0 +1,116 @@
+﻿body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Nav */
+
+.nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(197, 1, 255, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 10000000;
+    height: 65px;
+}
+
+
+
+#logo {
+    font-size: 35px;
+    padding-bottom: 15px;
+    border: none;
+
+}
+
+ul {
+    display: flex;
+}
+
+li {
+    list-style: none;
+}
+
+.menu-li {
+    font-size: 16px;
+    margin-top: 22px;
+}
+
+a {
+    color: white;
+    margin: 10px 0px;
+    padding: 15px 17px;
+}
+
+    a:hover {
+        color: rgb(51, 255, 0);
+        text-decoration: none;
+    }
+
+input#search {
+    margin: 12px;
+    height: 30px;
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    color: black;
+}
+
+.box_search {
+    background-color: #fff;
+    border-radius: 30px;
+    width: 470px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    margin: 4px 100px;
+}
+
+.li-search {
+    margin-top: 11px;
+}
+
+#btn-menu {
+    display: none;
+}
+
+/* header_textnav */
+
+.header_textnav {
+    color: white;
+    width: 700px;
+    height: 50px;
+    padding: 280px 80px;
+}
+
+h3.Text_Nav {
+    font-size: 40px;
+    text-transform: capitalize;
+}
+
+.Text_Nav {
+    color: white;
+}
+.user_login {
+    position: absolute;
+    display: none;
+    width: 220px;
+    height: 110px;
+    background: rgba(163, 32, 202, 0.8);
+    margin: 12px 20px;
+}
+
+.btn_login {
+    margin: 20px 5px;
+}
+
+.menu-li:hover .user_login {
+    display: block;
+}
+.row.row_product {
+    margin: 20px 25px;
+}

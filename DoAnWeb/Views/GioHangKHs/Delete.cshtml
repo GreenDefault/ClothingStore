@@ -1,0 +1,73 @@
+﻿@model DoAnWeb.Areas.Admin.Models.GioHang
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<html>
+<head>
+    <title>Xóa sản phẩm</title>
+    <style>
+        .table {
+            width: 80%;
+            color: #212529;
+            margin: 0px 145px;
+        }
+
+        .table td, .table th {
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+            width: 100px;
+            padding: 15px 20px;
+        }
+
+        input.btn.btn-default {
+            padding: 0px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div style="height:170px;"></div>
+    <div style="margin-bottom:230px;">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Sản phẩm</td>
+                    <td>Đơn giá</td>
+                    <td>Màu</td>
+                    <td>Size</td>
+                    <td>Số lượng</td>
+                    <td>Chất liệu</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ảnh</td>
+                    <td>@Html.DisplayFor(model => model.SanPham.DonGia)</td>
+                    <td>@Html.DisplayFor(model => model.Mau.TenMau)</td>
+                    <td> @Html.DisplayFor(model => model.Size.TenSize)</td>
+                    <td> @Html.DisplayFor(model => model.SoLuong)</td>
+                    <td>@Html.DisplayFor(model => model.ChatLieu.TenChatLieu)</td>
+                    <td style="width:120px;">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <input type="submit" value="Xóa" class="btn btn-default" />  @Html.ActionLink("Trở về", "Index")
+
+                        </div>
+                        }
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

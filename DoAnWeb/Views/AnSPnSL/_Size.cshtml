@@ -1,0 +1,11 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.SoLuong>
+
+@{ List<long> mau = new List<long>();}
+@foreach (var item in Model)
+{
+    if (!mau.Contains(item.MaSize))
+    {
+        <button class="masize" style="outline: none; border: 1px solid gray" onclick="chonsize(this, @item.MaSize)" type="button" value="@item.MaSize">@item.Size.TenSize </button>
+        mau.Add(item.MaSize);
+    }
+}

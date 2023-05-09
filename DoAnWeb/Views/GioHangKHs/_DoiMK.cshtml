@@ -1,0 +1,78 @@
+﻿
+   <span style="color:red">@ViewBag.suck</span>
+    <form>
+        <div class="tabcontent info" id="Info">
+            <div class="bbbb">
+                Cập nhật mật khẩu
+            </div>
+            <div style="display:flex;">
+                <span id="tiger"></span>
+                <div style="flex:3;margin-top:-20px;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <td style="padding-top:25px;">
+                                    Mật khẩu hiện tại
+                                </td>
+                                <td class="td" style="padding-top:25px;">
+                                    <input type="password" name="currentpass" value="" id="currentpass" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Mật khẩu mới
+                                </td>
+                                <td class="td">
+                                    <input type="password" name="newpass" id="newpass" value="" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Nhập lại mật khẩu
+                                </td>
+                                <td class="td">
+                                    <input type="password" name="retypepass" id="retypepass" value="" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                </td>
+                                <td class="td">
+                                    <button id="btnsubmit" class="btn btn-primary" type="button" style="width:120px;">Lưu</button>
+                                </td>
+                            </tr>
+
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+<script>
+        $(document).ready(function () {
+        $('button#btnsubmit').click(function () {
+            var newpass = document.getElementById('newpass').value;
+            var retype = document.getElementById('retypepass').value;
+            if (newpass !== retype) {
+                alert('Mật khẩu mới không khớp!');
+            }
+            else {
+                $.ajax({
+                    url: "@Url.Action("Doimk")",
+                    type: 'POST',
+                    data: {
+                        'currentpass': $('input[type=password]#currentpass').val(),
+                        'newpass': $('input[type=password]#newpass').val(),
+                    },
+                    success: function (result) {
+                        $('span#tiger').text(result.status);
+                    }
+                })
+            }
+            document.getElementById('newpass').value = "";
+            document.getElementById('retypepass').value = "";
+            document.getElementById('currentpass').value = "";
+        })
+    });
+</script>

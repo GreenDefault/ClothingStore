@@ -1,0 +1,314 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.SanPham>
+
+@{
+    
+}
+<html>
+<head>
+    <title>Sản phẩm</title>
+
+    <style>
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .header {
+            height: 670px;
+            background: url(../images/hi.jpeg);
+            background-size: cover;
+            margin-bottom: 50px;
+            opacity: 0.8;
+        }
+
+        .product {
+            padding: 0px 0px;
+        }
+
+        #img_item {
+            width: 60px;
+            height: 60px;
+        }
+
+        #item_product {
+            margin: 20px 20px;
+        }
+
+        .row {
+            margin: 0px;
+        }
+
+
+
+        .list_item {
+            padding: 20px 0px 30px 75px;
+            margin: 0px;
+            width: 1340px;
+        }
+
+        .list_item_index {
+            padding: 0px;
+        }
+
+        .main_product {
+            padding-top: 0px;
+            padding-left: 5px;
+            height: auto;
+        }
+
+        #iddd {
+            position: absolute;
+            z-index: -1;
+        }
+
+        .item_product {
+            display: inline-flex;
+            background: rgb(255, 255, 255);
+            min-width: 100px;
+        }
+
+        a#item_product {
+            text-align: center;
+            width: 152px;
+            padding: 15px 0px;
+            margin: 0px 1px;
+            border: 1px solid white;
+            margin: 0px;
+        }
+
+
+            a#item_product:hover {
+                text-align: center;
+                width: 152px;
+                padding: 15px 0px;
+                margin: 0px 1px;
+                border: 1px solid blue;
+                margin: 0px;
+            }
+
+            a#item_product:hover {
+                border: 1px solid rgb(233, 233, 255);
+            }
+
+        #img_item {
+            width: 70px;
+            height: 60px;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+        #item_text {
+            color: rgb(0, 38, 255);
+        }
+
+        /* Cart_Product */
+
+        .container-fluid {
+            text-align: center;
+        }
+
+        .row {
+            max-width: 1340px;
+        }
+
+            .row.row_product {
+                margin-left: 40px;
+                background-color: #fff;
+                justify-content: center;
+                height: auto;
+            }
+
+            .row.item_product {
+                margin-left: -10px;
+                padding-left: 0px;
+            }
+
+            .row a:hover {
+                background: none;
+            }
+
+        .card_full {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .card {
+            width: 220px;
+            height: 420px;
+            color: rgb(140, 0, 255);
+            margin: 15px 20px 35px 0px;
+            border: 1px solid rgb(174, 0, 255);
+            display: inline-flex;
+            text-align: center;
+            position: static;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: 310px;
+        }
+
+        .main_cart_product {
+            background: linear-gradient(to right,rgb(235, 155, 255),rgb(225, 106, 255), rgb(255, 0, 221),rgb(255, 0, 221),rgb(225, 106, 255), rgb(219, 176, 245));
+            height: 55px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .img_cart_product {
+            padding: 13px 65px;
+            font-size: 22px;
+        }
+    </style>
+</head>
+<body>
+    <div class="product">
+        <div class="list_item">
+            <div class="row item_product">
+
+                <a id="item_product" href="">
+                    <div><img id="img_item" src="~/Assets/images/hi.jpeg"></div>
+                    <div><span id="item_text">Thời trang nam</span></div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="main_cart_product">
+        <div class="img_cart_product">
+            <a id="img_cart_product" href="">Thời trang mới</a>
+        </div>
+    </div>
+
+    <div class="main_product">
+        <div class="iddd">
+            <div class="row row_product">
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">@Html.DisplayFor(modelItem => item.TenSP)</h4>
+                            <p class="card-text">@Html.DisplayFor(modelItem => item.DonGia)</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+                <a class="card_full" href="./detail.html">
+                    <div class="card">
+                        <img class="card-img-top" src="~/Assets/images/5.jpg" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">Áo phông nữ</h4>
+                            <p class="card-text">Giá: 200,000 VNĐ</p>
+                        </div>
+                    </div>
+                </a>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+

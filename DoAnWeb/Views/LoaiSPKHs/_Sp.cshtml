@@ -1,0 +1,8 @@
+﻿@model  IEnumerable<DoAnWeb.Areas.Admin.Models.LoaiSP>
+@Html.ActionLink("Sản phẩm", "Index", "AnSPnSL", null, new { @class = "menu-item menu-product" })
+<div class="user_login">
+    @foreach (var item in Model)
+    {
+        <div class="btn_login">  <a href="@Url.Action("filter", "AnSPnSL", new { id = item.MaLoaiSP })">@item.TenLoaiSP</a></div>
+    }
+</div>

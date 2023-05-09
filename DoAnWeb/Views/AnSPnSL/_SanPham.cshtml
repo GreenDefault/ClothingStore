@@ -1,0 +1,44 @@
+﻿@model ICollection<DoAnWeb.ViewModels.ASPSL>
+@using Newtonsoft.Json;
+<div class="iddd">
+
+
+    <div class="row row_product">
+        @foreach (var item in Model)
+        {
+            <a class="card_full" href="@Url.Action("ChiTiet", "AnSPnSL", new { id = item.Sanss.MaSP})">
+                <div class="card">
+
+                    @foreach (var anh in item.Anhh)
+                    {
+
+                        <img src="@Url.Content("~/Assets/images/" + anh.Anh)" class="card-img-top" />
+                        break;
+
+
+                    }
+                    <div class="card-body">
+                        <p class="card-title">@item.Sanss.TenSP</p>
+                        <p class="card-text" style="font-size:15px; margin-top:7px;">Giá: @item.Sanss.DonGia VNĐ</p>
+                    </div>
+                </div>
+            </a>
+        }
+    </div>
+</div>
+
+<div class="row" style="margin-left:620px">
+    <nav aria-label="Page navigation" class="mx-auto">
+        <ul class="pagination" style="margin:20px 0">
+            @if (@ViewBag.NumPages != null && @ViewBag.NumPages > 1)
+            {
+                <li class="page-item">@Html.ActionLink("<", "Index", new { id = 1 }, new { @class = "page-link" })</li>
+                for (int i = 1; i <= @ViewBag.NumPages; i++)
+                {
+                    <li class="page-item">@Html.ActionLink(@i.ToString(), "Index", new { page = @i }, new { @class = "page-link" })@*<a class="page-link" href="Index?page=@i">@i</a>*@</li>
+                }
+                <li class="page-item">@Html.ActionLink(">", "Index", new { page = ViewBag.NumPages }, new { @class = "page-link" })@*<a class="page-link" href="Index?page=@ViewBag.NumPages">>></a>*@</li>
+            }
+        </ul>
+    </nav>
+</div>

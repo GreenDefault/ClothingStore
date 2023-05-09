@@ -1,0 +1,356 @@
+﻿@model DoAnWeb.Areas.Admin.ViewModels.losAngeles
+@{
+    ViewBag.Title = "Edit";
+}
+@{
+    var aaa = ViewBag.MaMau0;
+    var bbb = (SelectList)ViewBag.Size0;
+    var id = 1;
+}
+<h3 style="margin:34px 165px;">Sửa sản phẩm</h3>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $("#add").click(function () {
+                console.log('active!');
+                document.getElementById('addd').value = parseInt(document.getElementById('addd').value) + 1;
+                var lastField = $("#buildyourform div:last");
+                var intId = (lastField && lastField.length && lastField.data("idx") + 1) || 1;
+                var fieldWrapper = $("<div class=\"fieldwrapper\" id=\"field" + intId + "\" style=\"display: flex; margin: 0px 112px; \" />");
+                fieldWrapper.data("idx", intId);
+                var fName = $("<div class=\"1\"> <select class=\"form-control fc\" id=\"MaMau\" name=\"MaMau" + intId + "\" > @foreach (var k in aaa)
+                {
+                    var c = "<option value=" + Html.Raw(k.Value) + ">" + Html.Raw(k.Text) + "</option>"; @Html.Raw(c);
+                } </select> </div>");
+                var qName = $("@foreach (var k in bbb)
+                {
+                    var c = "<div class=\\\"1\\\">  <input type=\\\"number\\\" style=\\\"margin-top: 0px\\\"  id=\\\"SoLuong\\\" name=\\\"SoLuong" + Html.Raw(k.Text) + id + "\\\" /> </div>"; @Html.Raw(c) }");
+                @*var fType = $("<select class=\"fieldtype form-control\" style=\"width: 100px; height: 50px\" multiple id=\"Size\" name=\"Size" + intId + "\" >@foreach (var k in bbb) { var c = "<option value="+ Html.Raw(k.Value)+">" + Html.Raw(k.Text) + "</option>"; @Html.Raw(c); } </select > ");*@
+                var Anh = $("<div class=\"1\"> <input class=\"form-control text-box single-line\" id=\"Anh\" name=\"Anh" + intId + "\" type=\"file\" value=\"\"> </div>");
+                var removeButton = $("<div class=\"1\">  <input type=\"button\" class=\"remove\" value=\"-\" /> </div>");
+                removeButton.click(function () {
+                    $(this).parent().remove();
+                    document.getElementById('addd').value = parseInt(document.getElementById('addd').value ) - 1;
+                });
+                fieldWrapper.append(fName);
+                //fieldWrapper.append(fType);
+                fieldWrapper.append(qName);
+                fieldWrapper.append(Anh);
+                fieldWrapper.append(removeButton);
+                $("#buildyourform").append(fieldWrapper);
+
+            });
+        });
+        function removeclick(abc) {
+            $(abc).parent().remove();
+            document.getElementById('addd').value = parseInt(document.getElementById('addd').value) - 1;
+            document.getElementById('oldremain').value = parseInt(document.getElementById('oldremain').value) - 1;
+        }
+    </script>
+    <style>
+        .col-md-10 {
+            margin: 15px 0px;
+        }
+
+        .form-horizontal {
+            margin-left: 47px;
+        }
+
+        select#MaMau {
+            width: 80px;
+            height: 32px;
+        }
+
+        input.remove {
+            margin-top: 5px;
+        }
+
+        input#SoLuong {
+            height: 26px;
+            width: 79px;
+            margin-left: 41px;
+        }
+
+        input#Anh {
+            margin-top: 5px;
+            margin-left: 40px;
+            width: 185px;
+        }
+
+        .form-group {
+            font-size: 17px;
+            margin-left: 118px;
+        }
+
+        .form-control {
+            width: 820px;
+            height: 24px;
+        }
+
+        .btn btn-default {
+            width: 50px;
+            height: 24px;
+        }
+
+        input.btn.btn-default {
+            height: 35px;
+            width: 119px;
+            background: #405ffb;
+            border: none;
+            font-size: 15px;
+            color: white;
+            margin-top: 5px;
+        }
+
+        select#MaLoaiSP {
+            width: 830px;
+            height: 33px;
+        }
+
+        select#MaCL {
+            width: 830px;
+            height: 33px;
+        }
+
+        select#MaNCC {
+            width: 830px;
+            height: 33px;
+        }
+
+        select#MaTH {
+            width: 830px;
+            height: 33px;
+        }
+
+        select#MaGT {
+            width: 830px;
+            height: 33px;
+        }
+
+        .cocail {
+            width: 200px;
+            height: 33px;
+        }
+
+        input#SoLuong {
+            height: 25px;
+            width: 68px;
+            margin-left: 16px;
+        }
+
+        div.fieldwrapper {
+            margin: 0px 112px;
+        }
+
+        .buildyourform {
+            display: flex;
+        }
+
+        .1 {
+            flex: 1;
+            display: flex;
+        }
+
+        div#field1 {
+            margin: 25px 0px;
+        }
+
+        input[type="number"] {
+            height: 23px;
+            width: 60px;
+            margin: 10px 18px;
+        }
+    </style>
+
+</head>
+<body>
+    @using (Html.BeginForm("Edit", "SanPhams", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.sp.MaSP)
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Tên sản phẩm</span>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.sp.TenSP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.sp.TenSP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Đơn giá</span>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.sp.DonGia, new { htmlAttributes = new { @class = "form-control", @style = "margin:0px;width:820px;" } })
+                    @Html.ValidationMessageFor(model => model.sp.DonGia, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Loại sản phẩm</span>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaLoaiSP", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sp.MaLoaiSP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Chất liệu</span>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaCL", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sp.MaCL, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Nhà cung cấp</span>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaNCC", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sp.MaNCC, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Thương hiệu</span>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaTH", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sp.MaTH, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <span class="control-label col-md-2">Giới tính</span>
+                <div class="col-md-10">
+                    @Html.DropDownList("MaGT", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.sp.MaGT, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="buildyourform">
+                <div style="display:flex; margin-left: 116px;margin-top: 30px;font-size:15px;}">
+                    <div style="margin-bottom:20px;margin-right: 30px;">Chọn Màu:<br /></div>
+                    <div>
+                        @foreach (var b in bbb)
+                        {
+                            <span style="margin:0px 27px;">Size @b.Text</span>
+                        }
+                    </div>
+                    <div>
+                        <div style="margin-left:40px;">Ảnh</div>
+                    </div>
+                </div>
+                <div style="margin-left:117px;">
+                    @{int i = 1;}
+                    @{ int demm = 0;}
+                    @{ List<long> checkmau = new List<long>();}
+                    @{ int current = 0; }
+                    @{ int tellsomebody = 0;}
+                    @foreach (var k in Model.anh)
+                    {
+                        if (!checkmau.Contains(k.Item1))
+                        {
+                    <div>
+                        <span>
+                            <select style="width: 72px; height: 29px;" name="Mau @i">
+                                @foreach (var r in aaa)
+                                {
+                                    if (r.Value != k.Item1.ToString())
+                                    {
+                                        <option value="@r.Value">@r.Text</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@r.Value" selected="selected">@r.Text</option>
+                                        current = int.Parse(r.Value);
+                                    }
+                                }
+                            </select>
+                        </span>
+                        <span style="margin-left:10px;">
+
+                            @foreach (var rrr in bbb)
+                            {
+                                int a = 0;
+                                if (tellsomebody >= Model.anh.Count)
+                                {
+                                    <input type="number" name="Size @rrr.Value @i" />
+                                }
+                                else
+                                {
+                                    if (Model.anh[tellsomebody].Item1 == current)
+                                    {
+
+                                        if (rrr.Value == Model.anh[tellsomebody].Item2.ToString())
+                                        {
+                                            <input type="number" name="Size @rrr.Value @i" value="@Model.anh[tellsomebody].Item3" />
+                                            tellsomebody++;
+                                        }
+                                        else
+                                        {
+                                            <input type="number" name="Size @rrr.Value @i" />
+                                        }
+                                        a++;
+                                        //if (a == k.Item2.Count)
+                                        //{
+
+                                        //}
+                                    }
+                                    else
+                                    {
+                                        <input type="number" name="Size @rrr.Value @i" />
+                                    }
+                                }
+                            }
+                        </span>
+
+                        <span style="margin-left:30px;">
+                            <input type="hidden" value="@k.Item1" name="currentAnh @k.Item1" />
+                            <img style="width:25px;height:25px;" src="@Url.Content("~/Assets/images/" + k.Item4)" />
+                        </span>
+
+                        <span>
+                            <input type="file" name="Anh @i" />
+                            @{demm++;}
+                        </span>
+                        @{i++;}
+                        <input type="button" onclick="removeclick(this)" class="remove" value="-" />
+                    </div>
+                            checkmau.Add(k.Item1);
+                        }
+
+                    }
+
+
+                </div><br />
+
+
+
+            </div>
+        </div>
+        <input type="button" value="Thêm màu" style="margin-left: 159px;" class="add" id="add" />
+        <div style="display:flex;">
+            <div class="form-group" style="flex:1;">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Lưu" class="btn btn-default" />
+                </div>
+            </div>
+
+            <div style="flex:1;text-align:center;margin-top:30px;margin-left:400px;">
+                @Html.ActionLink("Trở về", "Index", "SanPhams")
+            </div>
+        </div>
+        <input type="hidden" value="@demm" id="oldremain" name="oldremain" />
+        <input type="hidden" value="@demm" id="addd" name="addnew" />
+
+    }
+</body>
+</html>
+

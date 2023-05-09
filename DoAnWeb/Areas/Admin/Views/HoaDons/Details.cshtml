@@ -1,0 +1,96 @@
+﻿@model DoAnWeb.Areas.Admin.Models.HoaDon
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h3 style="margin:30px 0px;">Chi tiết</h3>
+<html>
+<head>
+    <style>
+        .body-wrapper .main-wrapper .page-wrapper {
+            background: #e9eaef;
+            margin-left: 170px;
+        }
+
+        table tr th {
+            text-align: left;
+            padding: 20px 100px 20px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <hr />
+        <table class="dl-horizontal">
+            <tr>
+                <th>Tên khách hàng</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Tài khoản</th>
+                <th>
+                    @Html.DisplayFor(model => model.TaiKhoan.TenDN)
+                </th>
+            </tr>
+            <tr>
+                <th>Địa chỉ</th>
+                <th>
+                    @Html.DisplayFor(model => model.DiaChi)
+                </th>
+            </tr>
+            <tr>
+                <th>SĐT KH</th>
+                <th>
+                    @Html.DisplayFor(model => model.SDTKH)
+                </th>
+            </tr>
+            <tr>
+                <th>Ngày mua</th>
+                <th>
+                    @Html.DisplayFor(model => model.NgayMua)
+                </th>
+            </tr>
+            <tr>
+                <th>Sản phẩm</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Màu</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Số lượng</th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Đơn giá</th>
+                <th> VND</th>
+            </tr>
+            <tr>
+                <th>Tổng tiền</th>
+                <th>
+                    @Html.DisplayFor(model => model.TongTien) VND
+                </th>
+            </tr>
+            <tr>
+                <th>Trạng thái</th>
+                <th>
+                    @Html.DisplayFor(model => model.TrangThai1.TenTrangThai)
+                </th>
+            </tr>
+            <tr>
+                <th>Thanh toán online - off line</th>
+                <th></th>
+            </tr>
+        </table>
+    </div>
+    <div style="padding:20px 0px;font-size:20px;">
+        @Html.ActionLink("Trở về", "Index")
+    </div>
+</body>
+</html>

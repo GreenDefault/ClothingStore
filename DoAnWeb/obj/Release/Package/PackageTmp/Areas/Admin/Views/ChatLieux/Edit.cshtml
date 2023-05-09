@@ -1,0 +1,77 @@
+﻿@model DoAnWeb.Areas.Admin.Models.ChatLieu
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h3 style="margin:34px 165px;">Sửa</h3>
+<html>
+<head>
+    <style>
+        .col-md-10 {
+            margin: 15px 0px;
+        }
+
+        .form-horizontal {
+            margin-left: 47px;
+        }
+
+        .form-group {
+            font-size: 17px;
+        }
+
+        .form-control {
+            width: 730px;
+            height: 24px;
+        }
+
+        .btn btn-default {
+            width: 50px;
+            height: 24px;
+        }
+
+        input.btn.btn-default {
+            height: 35px;
+            width: 119px;
+            background: #405ffb;
+            border: none;
+            font-size: 15px;
+            color: white;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div style="margin-top:40px;margin-left:120px;">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.MaCL)
+
+                <div class="form-group">
+                    Tên chất liệu
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TenChatLieu, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TenChatLieu, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div style="display:flex;">
+                    <div class="form-group" style="flex:1;">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Lưu" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <div style="flex:1;text-align:center;margin-top:30px;">
+                        @Html.ActionLink("Trở về", "Index")
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</body>
+</html>

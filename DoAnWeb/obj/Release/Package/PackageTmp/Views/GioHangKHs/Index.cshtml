@@ -1,0 +1,324 @@
+﻿@model DoAnWeb.ViewModels.GHnA
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/User_Layout.cshtml";
+}
+<html>
+<head>
+    <script>
+        function help(abc) {
+            if (abc.value != null && abc.value != "") {
+                console.log(parseInt(abc.value));
+                if (parseInt(abc.value) < 0) {
+                    abc.value = 1
+                    var p = $(abc).parent().parent().find('td#dongia div.text_sh').attr('value');
+                    var ckh = $(abc).parent().parent().find('td div input.checking');
+                    if ($(ckh).prop('checked') == true) {
+                        var ll = parseInt(document.getElementById('notmoney').getAttribute('value')) + p - parseInt($(abc).parent().parent().find('td#thanhtien div.text_sh').attr('value'));
+                        document.getElementById('notmoney').value = ll
+                        document.getElementById('tien').innerHTML = ll.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+                    }
+                    $(abc).parent().parent().find('td#thanhtien div.text_sh').attr('value', p);
+                    p = parseInt(p);
+                    p = p.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+                    $(abc).parent().parent().find('td#thanhtien div.text_sh').html(p);
+                }
+                else {
+                    var x = parseInt(abc.value);
+                    var p = $(abc).parent().parent().find('td#dongia div.text_sh').attr('value');
+                    //var k = parseInt(p.attr('value'));
+                    var k = x * p;
+                    var ckh = $(abc).parent().parent().find('td div input.checking');
+                    if ($(ckh).prop('checked') == true) {
+                        var ll = parseInt(document.getElementById('notmoney').getAttribute('value')) + k - parseInt($(abc).parent().parent().find('td#thanhtien div.text_sh').attr('value'));
+                        document.getElementById('notmoney').value = ll
+                        document.getElementById('tien').innerHTML = ll.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+                    }
+                    $(abc).parent().parent().find('td#thanhtien div.text_sh').attr('value', k);
+                    k = k.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+                    $(abc).parent().parent().find('td#thanhtien div.text_sh').html(k);
+                }
+            }
+        }
+        function checking(v) {
+            if ($(v).prop('checked') == true) {
+                var l = parseInt($(v).parent().parent().parent().find('td#thanhtien div.text_sh').attr('value'));
+                var r = parseInt(document.getElementById('notmoney').getAttribute('value')) + l;
+                document.getElementById('notmoney').value = r
+                document.getElementById('tien').innerHTML = "Tổng Tiền: " + r.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+            }
+            else {
+                var l = parseInt($(v).parent().parent().parent().find('td#thanhtien div.text_sh').attr('value'));
+                var r = parseInt(document.getElementById('notmoney').getAttribute('value')) - l;
+                document.getElementById('notmoney').value = r
+                document.getElementById('tien').innerHTML = r.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+            }
+        }
+        function toggle(source) {
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked != source.checked) {
+                    checkboxes[i].checked = source.checked;
+                    checkboxes[i].dispatchEvent(new Event('change'));
+                }
+
+            }
+        }
+
+        function xoahd(MaSP, MaSize, MaMau) {
+            $.ajax({
+                url: "@Url.Action("Delete")",
+                type: 'POST',
+                data: {
+                    'di': MaSP,
+                    'cd': MaSize,
+                    'dc': MaMau,
+                },
+                success: function (result) {
+                    $('div#cartinfo').html(result);
+                }
+            })
+        }
+    </script>
+    <style>
+        body {
+            background: rgb(249, 249, 249);
+        }
+
+        .shopping-cart {
+            padding-top: 100px;
+            padding-bottom: 60px;
+            background-color: rgb(249, 249, 249);
+        }
+
+        .pay-shoppingcart {
+            background-color: rgb(255, 255, 255);
+            width: 1100px;
+        }
+
+        .shopping-cart-text {
+            color: rgb(111, 0, 255);
+            padding: 40px 0px 40px 435px;
+            font-size: 28px;
+        }
+
+        .shopping-cart-img {
+            width: 60px;
+            height: 80px;
+        }
+
+        .table {
+            margin-bottom: 0px;
+        }
+
+        table.table.table-hover {
+            margin-bottom: 0px;
+        }
+
+        tr th {
+            text-align: center;
+        }
+
+        td {
+            text-align: center;
+            height: 120px;
+        }
+
+        .total {
+            margin-top: 20px;
+            padding-bottom: 45px;
+            color: rgb(255, 72, 0);
+            display: flex;
+        }
+
+        b {
+            margin-top: 10px;
+        }
+
+        .pay_tt {
+            width: 165px;
+            height: 42px;
+        }
+
+        .btn_pay a {
+            padding: 0px;
+            margin-left: 65px;
+        }
+
+        .button.btn.btn-primary.pay_tt a {
+            background: none;
+        }
+
+        input {
+            width: 80px;
+            height: 27px;
+            margin-top: 37px;
+        }
+
+        .text_sh {
+            margin-top: 40px;
+            color: blue;
+        }
+
+        input#buyall {
+            margin-top: 25px;
+            margin-left: 50px;
+            height: 40px;
+            width: 155px;
+        }
+
+        td.sp1 {
+            height: 70px;
+            padding-top: 28px;
+        }
+
+        .none {
+            height: 120px;
+        }
+
+        .tab {
+            overflow: hidden;
+        }
+
+            .tab button {
+                background-color: white;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+                color: black;
+            }
+
+        div#Offline {
+            margin: 0px 80px 40px 80px;
+        }
+
+        button#defaultOpen {
+            margin: 25px 10px 0px 100px;
+            border: 1px solid;
+        }
+
+        button.tablinks {
+            margin: 25px 10px 7px 0px;
+            border: 1px solid;
+            width: 240px;
+        }
+
+        .tab button:hover {
+            background-color: rgb(252, 247, 255);
+            color: blue;
+        }
+
+        .tab button.active {
+            background-color: white;
+            color: blue;
+            border: 1px solid red;
+        }
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            margin-bottom: 40px;
+        }
+
+        .topright {
+            float: right;
+            cursor: pointer;
+            font-size: 28px;
+        }
+
+        input#user {
+            width: 100%;
+            height: 35px;
+            margin: 10px 0px;
+        }
+
+        button.btn.btn-primary.pay_online {
+            width: 150px;
+            margin-top: 7px;
+        }
+
+        .row_top_left {
+            display: inline-flex;
+        }
+
+        #img {
+            width: 165px;
+            height: 100px;
+            margin: 0px 0px 37px 10px;
+        }
+
+        .username {
+            margin: 20px 0px;
+        }
+
+        input#user\ username {
+            margin: 7px 0px;
+            width: 400px;
+        }
+
+        label.label_name {
+            margin-top: 15px;
+        }
+
+        .main {
+            background: white;
+            margin: 0px 125px 40px 125px;
+            padding-bottom: 1px;
+        }
+
+        .aa {
+            margin: 25px 0px 5px 90px;
+        }
+
+        button#bb {
+            margin-bottom: 22px;
+        }
+
+        #cc {
+            margin-left: 0px;
+        }
+
+        .col-sm-7-left {
+            margin: 20px 0px 0px 85px;
+            max-width: 900px;
+        }
+
+        input#buyall\ tt {
+            margin-top: 50px;
+        }
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .abc {
+            white-space: nowrap;
+            width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #tien {
+            font-size: 16px;
+            margin-left: 222px;
+            margin-top: 35px;
+            width:365px;
+            text-align:right;
+        }
+    </style>
+</head>
+<body>
+    <div class="shopping-cart">
+        <div class=" container pay-shoppingcart" id="cartinfo">
+            @{Html.RenderPartial("_ThongTinGioHang", Model.nobody);}
+        </div>
+        <input type="hidden" id="notmoney" value="0" />
+    </div>
+</body>
+</html>

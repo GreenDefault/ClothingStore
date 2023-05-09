@@ -1,0 +1,13 @@
+﻿@model DoAnWeb.ViewModels.ASPSL
+
+@{ List<long> k = new List<long>();}
+@{ int count = 0;}
+@foreach (var item in Model.Luongs)
+{
+    if (!k.Contains(item.MaMau))
+    {
+        <button class="btn-chonmau" onclick="document.getElementById('anh').src = '@Url.Content("~/Assets/images/" + Model.Anhh[count].Anh)'; chonmau(this, @item.MaMau);" type="button" style="outline: none" value="@item.MaMau">@item.Mau.TenMau</button>
+        count++;
+        k.Add(item.MaMau);
+    }
+}

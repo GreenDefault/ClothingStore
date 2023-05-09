@@ -1,0 +1,217 @@
+﻿@model string
+@{ Layout = null;}
+@using (Html.BeginForm("Login", "Login", new { returnurl = Model}, FormMethod.Post, new { onsubmit = "return send(event);"}))
+{
+    <html>
+    <head>
+        <title>Đăng nhập</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="~/Assets/fontawesome-free-5.15.2-web/css/all.min.css" rel="stylesheet">
+        <script defer src="~/Assets/fontawesome-free-5.15.2-web/js/all.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <style>
+            /* Đăng nhập */
+            .lg {
+                background: url(../Assets/images/background.jpg) no-repeat;
+                background-size: cover;
+                margin-top: 55px;
+            }
+
+            .login1 {
+                margin: auto;
+                width: 330px;
+                height: 520px;
+                padding-top: 50px;
+                background-color: white;
+            }
+
+            .text_DN {
+                margin: auto;
+                text-align: center;
+                padding-bottom: 65px;
+            }
+
+            button.username.DN {
+                margin-top: 4px;
+            }
+
+            input.form-control.username {
+                width: 246px;
+            }
+
+            .username {
+                width: 245px;
+                height: 35px;
+                margin: 0px 42px;
+
+            }
+
+            button.btn.btn-primary.Btn_Login {
+                border: none;
+                height: 38px;
+                margin: 0px 42px;
+                width: 245px;
+                background-image: linear-gradient(to right, rgb(100, 160, 230), rgb(70, 106, 226),rgb(175, 25, 235),rgb(255, 0, 221));
+                color: white;
+            }
+
+            #or {
+                margin: 15px 145px;
+            }
+
+            .fb {
+                padding-top: 0px;
+                text-align: center;
+            }
+
+            .or {
+                background-color: rgb(130, 150, 238);
+                color: rgb(255, 255, 255);
+                width: 120px;
+                height: 37px;
+                border: none;
+            }
+
+                .or a {
+                    text-decoration: none;
+                    color: white;
+                }
+
+                    .or a:hover {
+                        text-decoration: none;
+                        color: white;
+                    }
+
+            #registration_now {
+                display: inline-flex;
+                margin-left: 42px;
+                padding: 45px 0px;
+            }
+
+            .dangkyngay {
+                font-size: 0.9rem;
+            }
+
+            .dangkyngay1 {
+                margin-left: 5px;
+            }
+
+            #registration_now a:hover {
+                text-decoration: none;
+            }
+            h2{
+                margin-bottom:20px;
+            }
+
+            #error-name {
+                color: red;
+                font-size: 14px;
+                margin: 0px 42px;
+                padding-bottom: 15px;
+            }
+
+            #error-password {
+                color: red;
+                font-size: 14px;
+                margin: 0px 42px;
+                padding-bottom: 15px;
+            }
+
+            #user_name{
+                margin-bottom:10px;
+            }
+
+            #pass_word {
+                margin-bottom: 10px;
+            }
+            .error-login {
+                font-size: 14px;
+                color: red;
+                margin-left:42px;
+                margin-top: -10px;
+
+            }
+        </style>
+
+    </head>
+    <body class="lg">
+        <div class="login1">
+            <h2 class="text_DN">Đăng nhập</h2>
+            <form onsubmit="return false; event.preventDefault();" name="abc">
+                @if (TempData["error"] != null)
+                {
+                    @Html.Raw(TempData["error"].ToString());
+                    TempData["error"] = null;
+                }
+                <input class="form-control username" id="user_name" name="user_name" type="text" placeholder="Tên đăng nhập">
+                <p id="error-name"></p>
+
+                <input class="form-control username" id="pass_word" name="pass_word" type="password" placeholder="Mật khẩu">
+                <p id="error-password"></p>
+
+                <button class="btn btn-primary Btn_Login" type="submit" value="Đăng nhập">
+                    Đăng nhập
+                </button>
+            </form>
+            <script>
+
+                function send(e) {
+                    var a = true;
+                    var user_name = document.getElementById('user_name').value;
+                    var pass_word = document.getElementById('pass_word').value;
+                    
+                    if (user_name.trim().length <= 0) {
+                        document.getElementById('error-name').innerHTML = 'Hãy điền tên đăng nhập!';
+                        e.preventDefault();
+                        a = false;
+                     
+                    } else if (user_name.trim().length <= 2) {
+                        document.getElementById('error-name').innerHTML = 'Tên phải lớn hơn 2 ký tự';
+                        e.preventDefault();
+                       a = false
+                    } else if (user_name.trim().length >= 10) {
+                        document.getElementById('error-name').innerHTML = 'Tên không lớn hơn 10 ký tự';
+                        e.preventDefault();
+                        a = false;
+                    }
+                    else {
+                        document.getElementById('error-name').innerHTML = '';
+                    }
+
+                    if (pass_word.trim().length <= 0) {
+                        document.getElementById('error-password').innerHTML = 'Hãy điền mật khẩu!';
+                        e.preventDefault();
+                        a = false;
+                    } else {
+                        document.getElementById('error-password').innerHTML = '';
+                      
+                    }
+                    return a;
+                }
+            </script>
+            
+
+            <div id="or">Hoặc</div>
+            <div>
+                <div class="fb">
+                    <button class="or or_fb" type="button" value="Facebook"><i class="fab fa-facebook-square"></i> <a href="https://www.facebook.com">Facebook</a> </button>
+                    <button class="or or_gg" type="button" value="Google"><i class="fab fa-google-plus-square"></i><a href="https://accounts.google.com/AddSession/identifier?flowName=GlifWebSignIn&flowEntry=AddSession"> Google</a>  </button>
+                </div>
+            </div>
+            <div id="registration_now">
+                <div class="dangkyngay">Bạn chưa có tài khoản?</div>
+                <div class="dangkyngay dangkyngay1">@Html.ActionLink("Đăng ký ngay!", "DangKy", "DangKy") </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+}
+
+

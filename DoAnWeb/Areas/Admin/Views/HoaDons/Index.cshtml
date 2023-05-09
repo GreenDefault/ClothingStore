@@ -1,0 +1,151 @@
+﻿@model IEnumerable<DoAnWeb.Areas.Admin.Models.HoaDon>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <style>
+        .table tbody tr td {
+            padding:12px 0px;
+            font-size: 16px;
+            color: black;
+            text-align: left;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 300;
+            white-space: nowrap;
+            width: 60px;
+
+        }
+        th {
+            text-align: left;
+        }
+        .table thead tr th {
+            font-size: 17px;
+            color: black;
+            text-align: left;
+            border-bottom: 1px solid #e9eaef;
+            font-weight: 500;
+            white-space: nowrap;
+            width: 120px;
+        }
+
+        .table {
+            margin-left: 17px;
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+        }
+
+        p a {
+            margin-top: 100px;
+            margin-left: 48px;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        #adress{
+            width:120px;
+        }
+        .adress {
+            margin-top:10px;
+            width: 150px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 16px;
+        }
+
+        #loc {
+            width: 85px;
+            height: 30px;
+            background: blue;
+            border: 1px solid blue;
+            color: white;
+            font-size:14px;
+        }
+
+        input[type="date"] {
+            height: 28px;
+            width: 175px;
+        }
+
+        .total {
+            margin-left: 75px;
+        }
+
+    </style>
+</head>
+<body>
+    <div style="margin-top:100px;margin-left:60px;">
+        @using (Html.BeginForm("TT", "HoaDons", FormMethod.Post))
+        {
+        <div style="margin:45px;">
+            <span>Từ ngày <input type="date" name="from" style="margin-right:80px;" /> </span> 
+            
+            <span>Đến ngày <input type="date" name="to" /></span>
+
+            <input type="submit" id="loc" value="Lọc"/>
+            <span class="total">Tổng doanh thu:@ViewBag.Tong VND</span>
+        </div>
+        }
+        <table class="table">
+            <tr>
+                <th style="padding-left:30px;">
+                    Ngày mua
+                </th>
+                <th>
+                    Địa chỉ
+                </th>
+                <th>
+                    Tổng tiền
+                </th>
+                <th>
+                    SĐT KH
+                </th>
+                <th>
+                    Tên ĐN
+                </th>
+                <th>
+                    PT thanh toán
+                </th>
+                <th>
+                    Trạng thái
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @DateTime.Parse(item.NgayMua.ToString()).ToShortDateString()
+                    </td>
+                    <td id="adress">
+                        <p class="adress"> @Html.DisplayFor(modelItem => item.DiaChi)</p>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongTien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDTKH)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TaiKhoan.TenDN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ThanhToanOnline.TenThe)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai1.TenTrangThai)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.MaHD }) |
+                        @Html.ActionLink("Chi tiết", "Details", new { id = item.MaHD })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+   
+</body>
+</html>
